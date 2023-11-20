@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellose.HomePageController">
+   <children>
+      <Button fx:id="btnThuPhi" layoutX="70.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="89.0" prefWidth="91.0" text="Thu phí" />
+      <Button fx:id="btnTaiKhoan" layoutX="70.0" layoutY="263.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="89.0" prefWidth="91.0" text="Tài khoản" />
+      <Button fx:id="btnNhanKhau" layoutX="254.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="89.0" prefWidth="91.0" text="Nhân khẩu" />
+      <Button fx:id="btnLogout" layoutX="436.0" layoutY="264.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="89.0" prefWidth="91.0" text="Đăng xuất" />
+      <Button fx:id="btnHomThu" layoutX="254.0" layoutY="264.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="89.0" prefWidth="91.0" text="Hòm thư" />
+      <Button fx:id="btnQuanTri" layoutX="436.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="89.0" prefWidth="91.0" text="Quản trị" />
+   </children>
+</AnchorPane>
