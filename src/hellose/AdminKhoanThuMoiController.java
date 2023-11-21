@@ -103,6 +103,8 @@ public class AdminKhoanThuMoiController extends SceneController implements Initi
     }
     
     public void queryPhiDV(){
+        tieuDe = "Phí dịch vụ " + Thang + "/" + Nam;
+        tbTieuDe.setText(tieuDe);
         String base_query = "INSERT INTO thuphi (maCanHo, tenKhoanThu, Thang, Nam, soTien, trangThai, ghiChu) VALUES ";
         int heSo = Integer.parseInt(tbHeSodv.getText()) * 1000;
         System.out.println(base_query);
@@ -129,6 +131,96 @@ public class AdminKhoanThuMoiController extends SceneController implements Initi
         lbLog.setText("Tạo khoản thu mới thành công");
     }
     
+    public void queryPhiGuiXe(){
+        tieuDe = "Phí gửi xe " + Thang + "/" + Nam;
+        tbTieuDe.setText(tieuDe);
+        String base_query = "INSERT INTO thuphi (maCanHo, tenKhoanThu, Thang, Nam, soTien, trangThai, ghiChu) VALUES ";
+        int heSoXeMay = Integer.parseInt(tbHeSoXeMay.getText()) * 1000;
+        int heSoXeHoi = Integer.parseInt(tbHeSoXeHoi.getText()) * 1000;
+        System.out.println(base_query);
+        for(int i=0; i<dsCanHo.size(); ++i){
+            String value = utils.quoteWrap(dsCanHo.get(i).getMaCanHo()) + ", ";
+            value += (utils.quoteWrap(tieuDe) + ", ");
+            value += (Thang + ", ");
+            value += (Nam + ", ");
+            int soTien = Math.round(heSoXeMay * dsCanHo.get(i).getSoXeMay() + heSoXeHoi * dsCanHo.get(i).getSoXeHoi()); 
+            value += (String.valueOf(Integer.toString(soTien)) + ", ");
+            value += (utils.quoteWrap("Chưa đóng") + ", ");
+            value += (utils.quoteWrap("Bắt buộc"));
+            
+            String query = base_query + "(" + value + ")";
+            System.out.println(query);
+            
+            try {
+                dbquery.getSt().executeUpdate(query);
+            } catch (SQLException ex) {
+                Logger.getLogger(AdminKhoanThuMoiController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        lbLog.setText("Tạo khoản thu mới thành công");
+    }
+    
+    public boolean queryCustom(){
+        String base_query = "INSERT INTO thuphi (maCanHo, tenKhoanThu, Thang, Nam, soTien, trangThai, ghiChu) VALUES ";
+        System.out.println(base_query);
+        ArrayList<canHo> customList = new ArrayList<canHo>();
+        if(tbMaCanHo.getText().length() > 0){
+            String tmp_query = "SELECT * FROM canho WHERE maCanHo = " + utils.quoteWrap(tbMaCanHo.getText());
+            try {
+                ResultSet tmprs = dbquery.getSt().executeQuery(tmp_query);
+                while(tmprs.next()){
+                    canHo tmp = new canHo(tmprs);
+                    customList.add(tmp);
+                }
+                if(customList.size() == 0){
+                    lbLog.setText("Không tồn tại mã căn hộ.");
+                    return false;
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(AdminKhoanThuMoiController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else customList = dsCanHo;
+        for(int i=0; i<customList.size(); ++i){
+            String value = utils.quoteWrap(customList.get(i).getMaCanHo()) + ", ";
+            value += (utils.quoteWrap(tieuDe) + ", ");
+            value += (Thang + ", ");
+            value += (Nam + ", ");
+            if(tbSoTien.getText().length() == 0){
+                lbLog.setText("Hãy bổ sung số tiền cần đóng");
+                return false;
+            }
+            int soTien = Integer.parseInt(tbSoTien.getText());
+            value += (String.valueOf(Integer.toString(soTien)) + ", ");
+            value += (utils.quoteWrap("Chưa đóng") + ", ");
+            value += utils.quoteWrap(tbGhiChu.getText());
+            
+            String query = base_query + "(" + value + ")";
+            System.out.println(query);
+            
+            try {
+                dbquery.getSt().executeUpdate(query);
+            } catch (SQLException ex) {
+                Logger.getLogger(AdminKhoanThuMoiController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        lbLog.setText("Tạo khoản thu mới thành công!");
+        return true;
+    }
+    
+    public boolean querySQL(){
+        String QUERY = tbbSQL.getText();
+        try {
+            dbquery.getSt().executeUpdate(QUERY);
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminKhoanThuMoiController.class.getName()).log(Level.SEVERE, null, ex);
+            lbLog.setText("Truy vấn trên CSDL không thành công. Hãy kiểm tra lại truy vấn.");
+            return false;
+        }
+    }
+    
     public boolean queryKhoanThuMoi(){
         Thang = tbThang.getText();
         if(Thang.length() <= 0) {
@@ -149,6 +241,13 @@ public class AdminKhoanThuMoiController extends SceneController implements Initi
         }
         
         if(lbTLog.getText().contains("dịch vụ") == true) queryPhiDV();
+        else if(lbTLog.getText().contains("gửi xe") == true) queryPhiGuiXe();
+        else if(lbTLog.getText().contains("tùy chọn") == true) {
+            boolean tmp = queryCustom();
+        }
+        else if(lbTLog.getText().contains("SQL") == true) {
+            boolean tmp = querySQL();
+        }
         return true;
     }
     
