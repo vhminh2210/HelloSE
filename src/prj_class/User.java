@@ -4,12 +4,8 @@
  */
 package prj_class;
 
-<<<<<<< Updated upstream
-import java.sql.*;
-=======
 // import com.mysql.jdbc.Connection;
 import java.sql.Connection;
->>>>>>> Stashed changes
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
