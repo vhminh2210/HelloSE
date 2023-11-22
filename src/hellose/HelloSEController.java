@@ -4,7 +4,7 @@
  */
 package hellose;
 
-import com.mysql.jdbc.Connection;
+import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.io.IOException;

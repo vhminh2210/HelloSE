@@ -4,7 +4,7 @@
  */
 package prj_class;
 
-import com.mysql.jdbc.Connection;
+import java.sql.*;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.SQLException;
