@@ -4,7 +4,12 @@
  */
 package hellose;
 
+<<<<<<< Updated upstream
 import java.sql.*;
+=======
+// import com.mysql.jdbc.Connection;
+import java.sql.Connection;
+>>>>>>> Stashed changes
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.io.IOException;
