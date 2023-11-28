@@ -3,16 +3,24 @@ package hellose;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-
+import javafx.scene.image.ImageView;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
 
-public class DangPhatTrienController extends SceneController {
+public class DangPhatTrienController extends SceneController implements Initializable {
 
     @FXML
     private Button btnHome;
-
+    @FXML
+    private ImageView backgroundImage;
+    @FXML
+    private AnchorPane rootPane;
+    
     @FXML
     void handleButtonAction(ActionEvent event) {
         if(event.getSource() == btnHome) try {
@@ -21,5 +29,10 @@ public class DangPhatTrienController extends SceneController {
             Logger.getLogger(HomePageController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        backgroundImage.fitWidthProperty().bind(rootPane.widthProperty());
+        backgroundImage.fitHeightProperty().bind(rootPane.heightProperty());
+    } 
 }

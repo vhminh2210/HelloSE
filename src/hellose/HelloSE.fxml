@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellose.HelloSEController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellose.HelloSEController">
    <children>
-      <ImageView fx:id="imgvBg" fitHeight="400.0" fitWidth="555.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgvBg" pickOnBounds="true" preserveRatio="false">
          <image>
             <Image url="@../img/bkg.PNG" />
          </image>

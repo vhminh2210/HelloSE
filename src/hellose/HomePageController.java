@@ -13,6 +13,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import prj_class.User;
 
 /**
@@ -21,7 +23,9 @@ import prj_class.User;
  * @author admin
  */
 public class HomePageController extends SceneController implements Initializable {
-
+    
+    @FXML
+    private AnchorPane rootPane;
     @FXML
     private Button btnLogout;
     @FXML
@@ -34,6 +38,8 @@ public class HomePageController extends SceneController implements Initializable
     private Button btnHomThu;
     @FXML
     private Button btnQuanTri;
+    @FXML
+    private ImageView backgroundImage;
     
     private User current_user;
     
@@ -79,6 +85,8 @@ public class HomePageController extends SceneController implements Initializable
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        backgroundImage.fitWidthProperty().bind(rootPane.widthProperty());
+        backgroundImage.fitHeightProperty().bind(rootPane.heightProperty());
         current_user = hellose.HelloSE.getCurrent_user();
     }    
     

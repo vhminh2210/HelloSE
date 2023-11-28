@@ -31,7 +31,7 @@ import prj_class.dbConnection;
 import prj_class.dbQuery;
 import hellose.HelloSE;
 import prj_class.User;
-
+import javafx.scene.layout.AnchorPane;
 public class HelloSEController extends SceneController implements Initializable {
 
     @FXML
@@ -50,6 +50,8 @@ public class HelloSEController extends SceneController implements Initializable 
     private TextField txbUsername;
     @FXML
     private PasswordField txbPassword;
+    @FXML
+    private AnchorPane rootPane;
     
     private dbQuery query;
     
@@ -99,5 +101,7 @@ public class HelloSEController extends SceneController implements Initializable 
         // TODO
         dbConnection dbconn = new dbConnection();
         this.query = new dbQuery(dbconn.getConn());
+        imgvBg.fitWidthProperty().bind(rootPane.widthProperty());
+        imgvBg.fitHeightProperty().bind(rootPane.heightProperty());
     }    
 }
