@@ -29,7 +29,7 @@ public class dbConnection {
             String dbURL = "jdbc:mysql://sql12.freesqldatabase.com:3306/sql12664450";
             String username = "sql12664450";
             String password = "uj7HSxrHlz";
-            
+
             //Tạo kết nối
             conn = (Connection) DriverManager.getConnection(dbURL, username, password);
             if(conn != null) System.out.println("Kết nối thành công!!!");
