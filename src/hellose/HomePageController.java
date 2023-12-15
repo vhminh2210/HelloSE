@@ -14,7 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import prj_class.User;
 
 /**
@@ -25,7 +25,7 @@ import prj_class.User;
 public class HomePageController extends SceneController implements Initializable {
     
     @FXML
-    private AnchorPane rootPane;
+    private BorderPane rootPane;
     @FXML
     private Button btnLogout;
     @FXML
