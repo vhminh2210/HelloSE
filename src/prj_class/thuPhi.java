@@ -18,6 +18,7 @@ public class thuPhi {
     private String trangThai;
     private String ghiChu;
     private String thangNam;
+    private int maKhoanThu;
     
     private dbQuery dbquery;
     private dbConnection dbconn;
@@ -32,6 +33,7 @@ public class thuPhi {
             this.trangThai = rs.getString("trangThai");
             this.ghiChu = rs.getString("ghiChu");
             this.thangNam = String.valueOf(Thang) + "/" + String.valueOf(Nam);
+            this.maKhoanThu = rs.getInt("maKhoanThu");
         } catch (SQLException ex) {
             Logger.getLogger(thuPhi.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -78,6 +80,10 @@ public class thuPhi {
 
     public String getThangNam() {
         return thangNam;
+    }
+
+    public int getMaKhoanThu() {
+        return maKhoanThu;
     }
 
     public void setMaCanHo(String maCanHo) {
