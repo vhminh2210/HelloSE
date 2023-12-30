@@ -41,6 +41,8 @@ public class HelloSE extends Application {
             
             primaryStage.setTitle("HelloSE!");
             primaryStage.setScene(scene);
+            primaryStage.setMinHeight(800);
+            primaryStage.setMinWidth(1000);
 //            primaryStage.setMaximized(true);
             primaryStage.show();
         } catch (IOException ex) {
