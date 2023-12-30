@@ -26,6 +26,7 @@ public class nhanKhau {
     private String trangThai;
     private char gioiTinh;
     private dbQuery query;
+    private String dob;
 
     public nhanKhau(String hoTen, String cccd, String maCanHo, int UserID, int ngaySinh, int thangSinh, int namSinh, String quanHe, String ngheNghiep, String coQuan, String trangThai, char gioiTinh) {
         this.hoTen = hoTen;
@@ -40,6 +41,7 @@ public class nhanKhau {
         this.coQuan = coQuan;
         this.trangThai = trangThai;
         this.gioiTinh = gioiTinh;
+        this.dob = utils.dobFormat(ngaySinh, thangSinh, namSinh);
         
         dbConnection dbconn = new dbConnection();
         this.query = new dbQuery(dbconn.getConn());
@@ -59,6 +61,7 @@ public class nhanKhau {
             this.coQuan = rs.getString("coQuan");
             this.trangThai = rs.getString("trangThai");
             this.gioiTinh = rs.getString("gioiTinh").charAt(0);
+            this.dob = utils.dobFormat(ngaySinh, thangSinh, namSinh);
         } catch (SQLException ex) {
             Logger.getLogger(nhanKhau.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -114,6 +117,10 @@ public class nhanKhau {
             Logger.getLogger(nhanKhau.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "";
+    }
+    
+    public String getDob(){
+        return utils.dobFormat(ngaySinh, thangSinh, namSinh);
     }
 
     public boolean isChuHo() {
