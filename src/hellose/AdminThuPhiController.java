@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -16,7 +17,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -77,6 +81,14 @@ public class AdminThuPhiController extends SceneController implements Initializa
     private dbConnection dbconn;
     private User current_user;
     private String current_maCanHo;
+    @FXML
+    private TableColumn<thuPhi, Integer> colID;
+    @FXML
+    private Button btnXoaKhoanThu;
+    @FXML
+    private Label lbID;
+    @FXML
+    private TextField tbID;
 
     public void thuPhiQuery(){
         String qTrangThai = tbTrangThai.getText();
@@ -84,6 +96,7 @@ public class AdminThuPhiController extends SceneController implements Initializa
         String qThang = tbThang.getText();
         String qNam = tbNam.getText();
         String qMaCanHo = tbMaCanHo.getText();
+        String qID = tbID.getText();
         
         String query = "SELECT * FROM thuphi WHERE Thang > 0";
         if(qTrangThai.length() > 0) query += " AND trangThai = " + utils.quoteWrap(qTrangThai);
@@ -91,6 +104,7 @@ public class AdminThuPhiController extends SceneController implements Initializa
         if(qThang.length() > 0) query += " AND Thang = " + String.valueOf(qThang);
         if(qNam.length() > 0) query += " AND Nam = " + String.valueOf(qNam);
         if(qMaCanHo.length() > 0) query += " AND maCanHo = " + utils.quoteWrap(qMaCanHo);
+        if(qID.length() > 0) query += " AND maKhoanThu = " + String.valueOf(qID);
         
         System.out.println(query);
         
@@ -109,6 +123,64 @@ public class AdminThuPhiController extends SceneController implements Initializa
         }
     }
     
+    public void xoaKhoanPhi(){
+        String qTrangThai = tbTrangThai.getText();
+        String qKhoanThu = tbKhoanThu.getText();
+        String qThang = tbThang.getText();
+        String qNam = tbNam.getText();
+        String qMaCanHo = tbMaCanHo.getText();
+        String qID = tbID.getText();
+    
+        String info = "";
+        String query = "DELETE FROM thuphi WHERE Thang > 0";
+        
+        if(qTrangThai.length() > 0) {
+            query += " AND trangThai = " + utils.quoteWrap(qTrangThai);
+            info += "Trạng thái: " + qTrangThai + "\n";
+        } 
+        if(qKhoanThu.length() > 0) {
+            query += " AND tenKhoanThu LIKE " + utils.quoteWrap("%" + qKhoanThu + "%");
+            info += "Tên Khoản thu: " + qKhoanThu + "\n";
+        }
+        if(qThang.length() > 0) {
+            query += " AND Thang = " + String.valueOf(qThang);
+            info += "Tháng: " + String.valueOf(qThang) + "\n";
+        }
+        if(qNam.length() > 0) {
+            query += " AND Nam = " + String.valueOf(qNam);
+            info += "Năm: " + String.valueOf(qNam) + "\n";
+        }
+        if(qMaCanHo.length() > 0) {
+            query += " AND maCanHo = " + utils.quoteWrap(qMaCanHo);
+            info += "Mã căn hộ: " + qMaCanHo + "\n";
+        }
+        if(qID.length() > 0) {
+            query += " AND maKhoanThu = " + String.valueOf(qID);
+            info += "Mã khoản thu: " + qID + "\n";
+        }
+        /*Tham khảo: https://openplanning.net/11529/javafx-alert-dialog#1101511*/
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+            
+        alert.setTitle("Xóa khoản thu");
+        alert.setHeaderText("Bạn chắc chắn muốn xóa các khoản thu này chứ?");
+        alert.setContentText(info);
+        
+        Optional<ButtonType> option = alert.showAndWait();
+        
+	if (option.get() == null) {
+		txLog.setText("Chưa đưa ra lựa chọn!");
+	} else if (option.get() == ButtonType.OK) {
+                try {
+                dbquery.getSt().executeUpdate(query);
+                } catch (SQLException ex) {
+                Logger.getLogger(AdminThuPhiController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+		txLog.setText("Đã xóa các khoản thu được chọn!");
+	}
+        System.out.println(query);
+       
+    }
+    
     @FXML
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnHome) try {
@@ -124,6 +196,10 @@ public class AdminThuPhiController extends SceneController implements Initializa
         }
         
         if(event.getSource() == btnTimKiem) thuPhiQuery();
+        if(event.getSource() == btnXoaKhoanThu){
+            
+            xoaKhoanPhi();
+        }
     }
     
     public void showList(ObservableList <thuPhi> list){
@@ -137,6 +213,7 @@ public class AdminThuPhiController extends SceneController implements Initializa
         colGhiChu.setCellValueFactory(new PropertyValueFactory<thuPhi, String>("ghiChu"));
         colThang.setCellValueFactory(new PropertyValueFactory<thuPhi, String>("thangNam"));
         colSoTien.setCellValueFactory(new PropertyValueFactory<thuPhi, Integer>("soTien"));
+        colID.setCellValueFactory(new PropertyValueFactory<thuPhi, Integer>("maKhoanThu"));
         
         tbQuanLy.setItems(list);
     }
