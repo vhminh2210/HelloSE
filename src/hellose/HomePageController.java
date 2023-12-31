@@ -40,7 +40,6 @@ public class HomePageController extends SceneController implements Initializable
     @FXML
     private Button btnQuanTri;
     @FXML
-    
     private User current_user;
     
     @FXML

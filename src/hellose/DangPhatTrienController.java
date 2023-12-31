@@ -17,8 +17,6 @@ public class DangPhatTrienController extends SceneController implements Initiali
     @FXML
     private Button btnHome;
     @FXML
-    private ImageView backgroundImage;
-    @FXML
     private AnchorPane rootPane;
     
     @FXML
@@ -32,7 +30,5 @@ public class DangPhatTrienController extends SceneController implements Initiali
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        backgroundImage.fitWidthProperty().bind(rootPane.widthProperty());
-        backgroundImage.fitHeightProperty().bind(rootPane.heightProperty());
     } 
 }

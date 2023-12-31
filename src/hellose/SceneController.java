@@ -5,6 +5,7 @@
 package hellose;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -22,18 +23,32 @@ import javafx.stage.Stage;
  * @author admin
  */
 public class SceneController{
-    
     private Stage stage;
     private Scene scene;
     private Parent root;
+    static HashMap<String,Boolean> resizable = new HashMap<>();
+    static boolean filled = false;
     
     public void switchScene(ActionEvent event, String fxml) throws IOException{
-        
+        if(filled == false){
+            resizable.put("HomePage.fxml",true);
+            resizable.put("HelloSE.fxml",true);
+            resizable.put("NhanKhau.fxml",false);
+            resizable.put("ThuPhi.fxml",false);
+            resizable.put("AdminNhanKhau.fxml",false);
+            resizable.put("DangPhatTrien.fxml",false);
+            resizable.put("AdminThuPhi.fxml",false);
+            resizable.put("AdminKhoanThuMoi.fxml",false);
+            SceneController.filled = true;
+        }
+        boolean res = resizable.get(fxml);
+
         root = FXMLLoader.load(getClass().getResource(fxml));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
-//        stage.setMaximized(true);
+        stage.sizeToScene();
+        stage.setResizable(res);
         stage.show();
     }
     
