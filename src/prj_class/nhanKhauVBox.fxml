@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prj_class.NhanKhauVBoxController">
+   <children>
+      <VBox fx:id="vbox" layoutX="121.0" layoutY="34.0" prefHeight="101.0" prefWidth="357.0">
+         <children>
+            <Label fx:id="txHoTen" prefHeight="17.0" prefWidth="289.0" text="HỌ VÀ TÊN">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextFlow fx:id="tfQuanHe" prefHeight="21.0" prefWidth="243.0">
+               <children>
+                  <Text fx:id="txQuanHe" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="45.47003936767578" />
+                  <Label fx:id="lbQuanHe" text="Quan hệ với chủ hộ : ">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </TextFlow>
+            <TextFlow fx:id="tfCCCD" prefHeight="21.0" prefWidth="243.0">
+               <children>
+                  <Text fx:id="txCCCD" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="45.47003936767578" />
+                  <Label fx:id="lbCCCD" text="Số CCCD : ">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </TextFlow>
+            <TextFlow fx:id="tfDOB" prefHeight="21.0" prefWidth="243.0">
+               <children>
+                  <Text fx:id="txDOB" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="45.47003936767578" />
+                  <Label fx:id="lbDOB" text="Ngày sinh :">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </TextFlow>
+            <TextFlow fx:id="tfSDT" prefHeight="21.0" prefWidth="243.0">
+               <children>
+                  <Text fx:id="txSDT" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="45.47003936767578" />
+                  <Label fx:id="lbSDT" text="SĐT : ">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </TextFlow>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
