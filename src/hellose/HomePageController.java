@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.Scene;
 import prj_class.User;
 
 /**
@@ -39,7 +40,6 @@ public class HomePageController extends SceneController implements Initializable
     @FXML
     private Button btnQuanTri;
     @FXML
-    private ImageView backgroundImage;
     
     private User current_user;
     
@@ -60,7 +60,7 @@ public class HomePageController extends SceneController implements Initializable
         
         if(event.getSource() == btnNhanKhau) try {
             if(current_user.getQuyenHan().equals("ADMIN")) switchScene(event, "AdminNhanKhau.fxml");
-            else switchScene(event, "NhanKhau.fxml");
+            switchScene(event, "NhanKhau.fxml");
         } catch (IOException ex) {
             Logger.getLogger(HomePageController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -86,8 +86,6 @@ public class HomePageController extends SceneController implements Initializable
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        backgroundImage.fitWidthProperty().bind(rootPane.widthProperty());
-        backgroundImage.fitHeightProperty().bind(rootPane.heightProperty());
         current_user = hellose.HelloSE.getCurrent_user();
     }    
     
