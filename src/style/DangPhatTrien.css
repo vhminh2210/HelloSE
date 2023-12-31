@@ -1,0 +1,5 @@
+.root{
+/*    -fx-background-color:aquamarine;*/
+    -fx-background-image:url("../img/bkg.PNG");
+    -fx-background-size: 100% 100%
+}
