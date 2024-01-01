@@ -10,7 +10,7 @@
    <left>
       <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="196.0" styleClass="left_bar" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnThuPhi" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: transparent;" text="Thu phí" textFill="#fffdfd">
+            <Button fx:id="btnThuPhi" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="left_buttons" text="Thu phí" textFill="#fffdfd">
                <opaqueInsets>
                   <Insets bottom="2.5" left="10.0" right="10.0" top="2.5" />
                </opaqueInsets>
@@ -21,7 +21,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnTaiKhoan" layoutX="10.0" layoutY="75.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: transparent;" text="Tài khoản" textFill="#fffdfd">
+            <Button fx:id="btnTaiKhoan" layoutX="10.0" layoutY="75.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="left_buttons" text="Tài khoản" textFill="#fffdfd">
                <opaqueInsets>
                   <Insets bottom="2.5" left="10.0" right="10.0" top="2.5" />
                </opaqueInsets>
@@ -32,7 +32,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnNhanKhau" layoutX="13.0" layoutY="40.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: transparent;" text="Nhân khẩu" textFill="#fffdfd">
+            <Button fx:id="btnNhanKhau" layoutX="13.0" layoutY="40.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="left_buttons" text="Nhân khẩu" textFill="#fffdfd">
                <opaqueInsets>
                   <Insets bottom="2.5" left="10.0" right="10.0" top="2.5" />
                </opaqueInsets>
@@ -43,7 +43,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnHomThu" layoutX="10.0" layoutY="75.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: transparent;" text="Thông báo" textFill="#fffdfd">
+            <Button fx:id="btnHomThu" layoutX="10.0" layoutY="75.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="left_buttons" text="Thông báo" textFill="#fffdfd">
                <opaqueInsets>
                   <Insets bottom="2.5" left="10.0" right="10.0" top="2.5" />
                </opaqueInsets>
@@ -54,7 +54,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnQuanTri" layoutX="10.0" layoutY="125.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: transparent;" text="Quản trị" textFill="#fffdfd">
+            <Button fx:id="btnQuanTri" layoutX="10.0" layoutY="125.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="left_buttons" text="Quản trị" textFill="#fffdfd">
                <opaqueInsets>
                   <Insets bottom="2.5" left="10.0" right="10.0" top="2.5" />
                </opaqueInsets>
@@ -65,13 +65,16 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnLogout" layoutX="20.0" layoutY="163.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: transparent;" text="Đăng xuất" textFill="#fffdfd">
+            <Button fx:id="btnLogout" layoutX="20.0" layoutY="163.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" prefWidth="0.0" styleClass="left_buttons" text="Đăng xuất" textFill="#fffdfd">
                <opaqueInsets>
                   <Insets bottom="2.5" left="10.0" right="10.0" top="2.5" />
                </opaqueInsets>
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
+               <VBox.margin>
+                  <Insets bottom="2.5" left="10.0" right="10.0" top="2.5" />
+               </VBox.margin>
             </Button>
          </children>
       </VBox>

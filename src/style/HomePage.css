@@ -17,3 +17,12 @@
     -fx-background-color:black;
     -fx-opacity: 0.7
 }
+
+.left_buttons{
+    -fx-background-color:transparent;
+}
+
+.left_buttons:hover{
+    -fx-background-color:#00cccc;
+    -fx-opacity: 1
+}
