@@ -30,6 +30,8 @@ import javafx.stage.Stage;
 import prj_class.dbConnection;
 import prj_class.dbQuery;
 import hellose.HelloSE;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import prj_class.User;
 import javafx.scene.layout.AnchorPane;
 public class HelloSEController extends SceneController implements Initializable {
@@ -54,6 +56,41 @@ public class HelloSEController extends SceneController implements Initializable 
     private AnchorPane rootPane;
     
     private dbQuery query;
+    
+    @FXML
+    private void handleKeyAction(KeyEvent kevent) throws SQLException{
+//        System.out.println(kevent.getCode());
+        if(kevent.getCode().equals(KeyCode.ENTER)){
+            try {
+         
+                String userName = txbUsername.getText();
+                String passWd = txbPassword.getText();
+                
+                ResultSet rs = query.findUser(userName);
+                if(rs.isBeforeFirst() == false)
+                {
+                    lbStatus.setText("Tên người dùng không tồn tại!");
+                    return;
+                }
+                
+                while(rs.next()){
+                    if(rs.getString("passWd").equals(passWd)){
+                        User current_user = new User(rs);
+                        hellose.HelloSE.setCurrent_user(current_user);
+                        
+                        lbStatus.setText("Đăng nhập thành công!");
+                        switchScene(kevent, "HomePage.fxml");
+                        return;
+                    }
+                }
+                
+                lbStatus.setText("Sai tên đăng nhập hoặc mật khẩu!");
+                
+            } catch (IOException ex) {
+                Logger.getLogger(HelloSEController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
     
     @FXML
     private void handleButtonAction(ActionEvent event) throws SQLException{
@@ -104,4 +141,5 @@ public class HelloSEController extends SceneController implements Initializable 
         imgvBg.fitWidthProperty().bind(rootPane.widthProperty());
         imgvBg.fitHeightProperty().bind(rootPane.heightProperty());
     }    
+
 }
