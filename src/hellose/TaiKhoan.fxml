@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellose.TaiKhoanController">
+   <children>
+      <Button fx:id="btnHome" layoutX="520.0" layoutY="37.5" mnemonicParsing="false" onAction="#handleButtonAction" text="Home" />
+      <Label fx:id="lbTitle" layoutX="25.0" layoutY="25.0" prefHeight="46.0" prefWidth="391.0" text="Thông tin tài khoản">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbUser" layoutX="37.5" layoutY="75.0" prefHeight="46.0" prefWidth="391.0" text="Thông tin tài khoản hiện tại">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbUserID" layoutX="50.0" layoutY="125.0" text="ID người dùng :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbtxUserID" layoutX="150.0" layoutY="125.0" prefHeight="17.0" prefWidth="275.0" />
+      <Label fx:id="lbUserName" layoutX="50.0" layoutY="150.0" text="Tên đăng nhập :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbtxUserName" layoutX="150.0" layoutY="150.0" prefHeight="17.0" prefWidth="275.0" />
+      <Label fx:id="lbUserPhone" layoutX="50.0" layoutY="175.0" text="Số điện thoại :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbtxUserPhone" layoutX="150.0" layoutY="175.0" prefHeight="17.0" prefWidth="275.0" />
+      <Label fx:id="lbUserPermission" layoutX="50.0" layoutY="200.0" text="Quyền hạn :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbtxUserPermission" layoutX="150.0" layoutY="200.0" prefHeight="17.0" prefWidth="275.0" />
+      <Button fx:id="btnUserChangeInfo" layoutX="50.0" layoutY="237.5" mnemonicParsing="false" onAction="#handleButtonAction" text="Chỉnh sửa thông tin tài khoản" />
+      <Button fx:id="btnUserChangePassword" layoutX="300.0" layoutY="237.5" mnemonicParsing="false" onAction="#handleButtonAction" text="Đổi mật khẩu" />
+      <Button fx:id="btnUserSignOut" layoutX="500.0" layoutY="237.5" mnemonicParsing="false" onAction="#handleButtonAction" text="Đăng xuất" />
+      <Label fx:id="lbOther" layoutX="37.5" layoutY="275.0" prefHeight="46.0" prefWidth="391.0" text="Thông tin tài khoản khác">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnNewUser" layoutX="460.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Tạo tài khoản mới" />
+      <Button fx:id="btnTimKiem" layoutX="360.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Tìm kiếm" />
+      <Label fx:id="lbOtherID" layoutX="50.0" layoutY="325.0" text="ID người dùng :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbOtherID" layoutX="150.0" layoutY="320.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label fx:id="lbOtherName" layoutX="50.0" layoutY="350.0" text="Tên đăng nhập :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbOtherPhone" layoutX="50.0" layoutY="375.0" text="Số điện thoại :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbOtherPermission" layoutX="50.0" layoutY="400.0" text="Quyền hạn :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnOtherChangeInfo" layoutX="50.0" layoutY="437.5" mnemonicParsing="false" onAction="#handleButtonAction" text="Chỉnh sửa thông tin tài khoản" />
+      <Button fx:id="btnOtherChangePassword" layoutX="300.0" layoutY="437.5" mnemonicParsing="false" onAction="#handleButtonAction" text="Đổi mật khẩu" />
+      <Button fx:id="btnDeleteUser" layoutX="480.0" layoutY="437.5" mnemonicParsing="false" onAction="#handleButtonAction" text="Xoá tài khoản" />
+      <Text fx:id="txOtherName" layoutX="150.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="275.0" />
+      <Text fx:id="txOtherPhone" layoutX="150.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="275.0" />
+      <Text fx:id="txOtherPermission" layoutX="150.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="275.0" />
+      <Text fx:id="txWarning" layoutX="300.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="275.0" />
+   </children>
+</AnchorPane>

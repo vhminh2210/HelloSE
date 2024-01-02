@@ -42,6 +42,10 @@ public class SceneController{
             resizable.put("DangPhatTrien.fxml",false);
             resizable.put("AdminThuPhi.fxml",false);
             resizable.put("AdminKhoanThuMoi.fxml",false);
+            resizable.put("TaiKhoan.fxml",false);
+            resizable.put("DoiMatKhau.fxml",false);
+            resizable.put("ChinhSuaTaiKhoan.fxml",false);
+            resizable.put("ThemTaiKhoan.fxml",false);
             SceneController.filled = true;
         }
         boolean res = resizable.get(fxml);
@@ -67,6 +71,10 @@ public class SceneController{
             resizable.put("DangPhatTrien.fxml",false);
             resizable.put("AdminThuPhi.fxml",false);
             resizable.put("AdminKhoanThuMoi.fxml",false);
+            resizable.put("TaiKhoan.fxml",false);
+            resizable.put("DoiMatKhau.fxml",false);
+            resizable.put("ChinhSuaTaiKhoan.fxml",false);
+            resizable.put("ThemTaiKhoan.fxml",false);
             SceneController.filled = true;
         }
         boolean res = resizable.get(fxml);

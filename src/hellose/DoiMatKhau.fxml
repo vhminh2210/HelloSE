@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellose.DoiMatKhauController">
+   <children>
+      <Button fx:id="btnHome" layoutX="500.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Home" />
+      <Button fx:id="btnBack" layoutX="425.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Back" />
+      <Label fx:id="lbTitle" layoutX="35.0" layoutY="35.0" prefHeight="46.0" prefWidth="391.0" text="Đổi mật khẩu">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnChangePassword" layoutX="256.0" layoutY="346.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Đổi mật khẩu" />
+      <Label fx:id="lbOldPassword" layoutX="75.0" layoutY="175.0" text="Mật khẩu cũ:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbOldPassword" layoutX="221.0" layoutY="171.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label fx:id="lbNewPassword1" layoutX="75.0" layoutY="225.0" text="Mật khẩu mới:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbNewPassword1" layoutX="221.0" layoutY="221.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label fx:id="lbNewPassword2" layoutX="75.0" layoutY="275.0" text="Nhập lại mật khẩu mới:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbNewPassword2" layoutX="221.0" layoutY="271.0" prefHeight="25.0" prefWidth="200.0" />
+      <Text fx:id="txWarning" layoutX="75.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="275.0" />
+      <Label fx:id="lbUserID" layoutX="75.0" layoutY="100.0" text="ID người dùng :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbtxUserID" layoutX="225.0" layoutY="100.0" prefHeight="17.0" prefWidth="275.0" />
+      <Label fx:id="lbUserName" layoutX="75.0" layoutY="125.0" text="Tên đăng nhập :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbtxUserName" layoutX="225.0" layoutY="125.0" prefHeight="17.0" prefWidth="275.0" />
+   </children>
+</AnchorPane>
