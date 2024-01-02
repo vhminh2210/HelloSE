@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,19 +17,18 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.text.Text;
 import prj_class.User;
 import prj_class.dbConnection;
 import prj_class.dbQuery;
 import prj_class.nhanKhau;
-import prj_class.nhanKhauCanHo;
-import prj_class.thuPhi;
 import prj_class.utils;
 
 /**
@@ -36,75 +36,56 @@ import prj_class.utils;
  *
  * @author admin
  */
-public class AdminNhanKhauController extends SceneController implements Initializable {
+public class AdminXoaNhanKhauController extends SceneController implements Initializable {
 
+    @FXML
+    private Button btnBack;
+    @FXML
+    private TextField tbTen;
+    @FXML
+    private TextField tbMaCanHo;
+    @FXML
+    private TextField tbCCCD;
+    @FXML
+    private TextField tbID;
     @FXML
     private TableView<nhanKhau> tbQuanLy;
     @FXML
     private TableColumn<nhanKhau, Integer> colID;
     @FXML
-    private TableColumn<nhanKhau, String> colMaCanHo;
-    @FXML
     private TableColumn<nhanKhau, String> colTen;
     @FXML
-    private TableColumn<nhanKhau, String> colNgaySinh;
+    private TableColumn<nhanKhau, String> colMaCanHo;
     @FXML
     private TableColumn<nhanKhau, String> colCCCD;
     @FXML
-    private TableColumn<nhanKhau, String> colNgayBatDau;
-    @FXML
-    private TableColumn<nhanKhau, String> colNgayKetThuc;
-    @FXML
-    private TextField tbTen;
-    @FXML
-    private TextField tbCCCD;
-    @FXML
     private Button btnTimKiem;
     @FXML
-    private Button btnHome;
-    @FXML
-    private TextField tbDOB;
-    @FXML
-    private Text txLog;
-    @FXML
-    private TextField tbMaCanHo;
-    @FXML
-    private Button btnNhanKhauMoi;
-    @FXML
-    private Label lbID;
-    @FXML
-    private TextField tbID;
-    @FXML
     private Button btnXoaNhanKhau;
-    
-    private ObservableList <nhanKhau> nhanKhau_list;
+    @FXML
+    private TextField tbNgayKetThuc;
+    @FXML
+    private Label txLog;
+
     private dbQuery dbquery;
     private dbConnection dbconn;
     private User current_user;
+    private String query;
     
     @FXML
     public void handleButtonAction(ActionEvent event){
-        if(event.getSource() == btnNhanKhauMoi) {
+        if(event.getSource() == btnBack) {
             try {
-                switchScene(event, "AdminNhanKhauMoi.fxml");
+                switchScene(event, "AdminNhanKhau.fxml");
             } catch (IOException ex) {
-                Logger.getLogger(AdminNhanKhauMoiController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AdminXoaNhanKhauController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if(event.getSource() == btnHome){
-            try {
-                switchScene(event, "HomePage.fxml");
-            } catch (IOException ex) {
-                Logger.getLogger(AdminNhanKhauController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if(event.getSource() == btnTimKiem){
+            nhanKhauQuery();
         }
-        if(event.getSource() == btnTimKiem) nhanKhauQuery();
-        if(event.getSource() == btnXoaNhanKhau) {
-            try {
-                switchScene(event, "AdminXoaNhanKhau.fxml");
-            } catch (IOException ex) {
-                Logger.getLogger(AdminNhanKhauController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if(event.getSource() == btnXoaNhanKhau){
+            XoaNhanKhau();
         }
     }
     
@@ -116,10 +97,7 @@ public class AdminNhanKhauController extends SceneController implements Initiali
         colID.setCellValueFactory(new PropertyValueFactory<nhanKhau, Integer>("userID"));
         colMaCanHo.setCellValueFactory(new PropertyValueFactory<nhanKhau, String>("maCanHo"));
         colTen.setCellValueFactory(new PropertyValueFactory<nhanKhau, String>("hoTen"));
-        colNgaySinh.setCellValueFactory(new PropertyValueFactory<nhanKhau, String>("dob"));
         colCCCD.setCellValueFactory(new PropertyValueFactory<nhanKhau, String>("cccd"));
-        colNgayBatDau.setCellValueFactory(new PropertyValueFactory<nhanKhau, String>("ngayBatDau"));
-        colNgayKetThuc.setCellValueFactory(new PropertyValueFactory<nhanKhau, String>("ngayKetThuc"));
         
         tbQuanLy.setItems(list);
     }
@@ -127,27 +105,21 @@ public class AdminNhanKhauController extends SceneController implements Initiali
     public void nhanKhauQuery(){
         String qTen = tbTen.getText();
         String qCCCD = tbCCCD.getText();
-        String qDOB = tbDOB.getText();
         String qMaCanHo = tbMaCanHo.getText();
         String qID = tbID.getText();
         
-        String query = "SELECT * FROM nhankhau WHERE userID > 0";
+        query = "SELECT * FROM nhankhau WHERE userID > 0";
         if(qTen.length() > 0) query += " AND hoTen LIKE " + utils.quoteWrap("%" + qTen + "%");
         if(qCCCD.length() > 0) query += " AND cccd LIKE " + utils.quoteWrap("%" + qCCCD + "%");
-        if(qDOB.length() > 0) {
-            String[] words = qDOB.split("/");
-            query += " AND ngaySinh = " + words[0];
-            query += " AND thangSinh = " + words[1];
-            query += " AND namSinh = " + words[2];
-        }
         if(qMaCanHo.length() > 0) query += " AND maCanHo LIKE " + utils.quoteWrap("%" + qMaCanHo + "%");
         if(qID.length() > 0) query += "AND userID = " + utils.quoteWrap(qID);
         
-        System.out.println(query);
+        String select_query = "SELECT * FROM nhankhau WHERE userID > 0" + query;
+        System.out.println(select_query);
         
         ResultSet rs;
         try {
-            rs = dbquery.getSt().executeQuery(query);
+            rs = dbquery.getSt().executeQuery(select_query);
             ObservableList <nhanKhau> list = FXCollections.observableArrayList();
             while(rs.next()){
                 nhanKhau tmp = new nhanKhau(rs);
@@ -160,28 +132,55 @@ public class AdminNhanKhauController extends SceneController implements Initiali
         }
     }
     
+    public void XoaNhanKhau() {
+        String ngayKetThuc = tbNgayKetThuc.getText();
+        if(ngayKetThuc.length() == 0){
+            txLog.setText("Cần bổ sung thêm ngày kết thúc!");
+            return;
+        }
+        String info = "Ngày kết thúc: " + ngayKetThuc + "\n**********\n";
+        String select_query = "SELECT * FROM nhankhau WHERE userID > 0" + query;
+        try {
+            ResultSet rs = dbquery.getSt().executeQuery(select_query);
+            while(rs.next()) {
+                info += "UserID: " + Integer.toString(rs.getInt("UserID")) + "\n";
+                info += "Họ và tên: "  + rs.getString("hoTen") + "\n";
+                info += "Mã căn hộ: " + rs.getString("maCanHo") + "\n";
+                info += "Số CCCD: " + rs.getString("cccd") + "\n\n";
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminXoaNhanKhauController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        /*Tham khảo: https://openplanning.net/11529/javafx-alert-dialog#1101511*/
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Xóa nhân khẩu");
+        alert.setHeaderText("Bạn chắc chắn muốn xóa các nhân khẩu này chứ?");
+        alert.setContentText(info);
+        
+        Optional<ButtonType> option = alert.showAndWait();
+        
+	if (option.get() == null) {
+		txLog.setText("Chưa đưa ra lựa chọn!");
+	} else if (option.get() == ButtonType.OK) {
+                try {
+                    String delquery = "UPDATE nhankhau_canho SET ngayKetThuc=" + utils.dmy2ymd(ngayKetThuc);
+                    delquery += " WHERE userID > 0" + query;
+                    System.out.println(delquery);
+                    dbquery.getSt().executeUpdate(query);
+                } catch (SQLException ex) {
+                Logger.getLogger(AdminThuPhiController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+		txLog.setText("Đã xóa các khoản thu được chọn!");
+	}
+        System.out.println(query);
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         current_user = hellose.HelloSE.getCurrent_user();
         dbconn = new dbConnection();
         dbquery = new dbQuery(dbconn.getConn());
-        nhanKhau_list = FXCollections.observableArrayList();
         
-        // Danh sách thu phí theo căn hộ
-        String query = "SELECT * FROM nhankhau";
-        ResultSet rs;
-        try {
-            rs = dbquery.getSt().executeQuery(query);
-            while(rs.next()){
-            nhanKhau tmp = new nhanKhau(rs);
-            nhanKhau_list.add(tmp);
-        }
-        } catch (SQLException ex) {
-            Logger.getLogger(AdminNhanKhauController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        // Đẩy danh sách lên GUI
-        showList(nhanKhau_list);
     }    
     
 }

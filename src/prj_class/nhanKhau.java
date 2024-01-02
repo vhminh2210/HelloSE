@@ -9,6 +9,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.TextFlow;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,6 +51,8 @@ public class nhanKhau {
     
     public nhanKhau(ResultSet rs){
         try {
+            dbConnection dbconn = new dbConnection();
+            this.query = new dbQuery(dbconn.getConn());
             this.hoTen = rs.getString("hoTen");
             this.cccd = rs.getString("cccd");
             this.maCanHo = rs.getString("maCanHo");
@@ -141,6 +145,40 @@ public class nhanKhau {
 
     public String getTrangThai() {
         return trangThai;
+    }
+    
+    public String getNgayBatDau() {
+        try {
+            String Query = "SELECT ngayBatDau FROM nhankhau_canho WHERE userID = " + UserID;
+            ResultSet rs = query.getSt().executeQuery(Query);
+            Date ngayBatDau;
+            while(rs.next()){
+                ngayBatDau = rs.getDate("ngayBatDau");
+                if (ngayBatDau == null) break;
+                LocalDate localDate = ngayBatDau.toLocalDate();
+                return utils.dobFormat(localDate.getDayOfMonth(), localDate.getMonthValue(), localDate.getYear());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(nhanKhau.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "NA";
+    }
+
+    public String getNgayKetThuc() {
+                try {
+            String Query = "SELECT ngayKetThuc FROM nhankhau_canho WHERE userID = " + UserID;
+            ResultSet rs = query.getSt().executeQuery(Query);
+            Date ngayKetThuc;
+            while(rs.next()){
+                ngayKetThuc = rs.getDate("ngayKetThuc");
+                if (ngayKetThuc == null) break;
+                LocalDate localDate = ngayKetThuc.toLocalDate();
+                return utils.dobFormat(localDate.getDayOfMonth(), localDate.getMonthValue(), localDate.getYear());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(nhanKhau.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "NA";
     }
 
     public void setGioiTinh(char gioiTinh) {

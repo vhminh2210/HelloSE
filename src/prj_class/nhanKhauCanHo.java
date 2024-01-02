@@ -7,6 +7,7 @@ package prj_class;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -39,12 +40,14 @@ public class nhanKhauCanHo {
         return maCanHo;
     }
 
-    public Date getNgayBatDau() {
-        return ngayBatDau;
+    public String getNgayBatDau() {
+        LocalDate localDate = ngayBatDau.toLocalDate();
+        return utils.dobFormat(localDate.getDayOfMonth(), localDate.getMonthValue(), localDate.getYear());
     }
 
-    public Date getNgayKetThuc() {
-        return ngayKetThuc;
+    public String getNgayKetThuc() {
+        LocalDate localDate = ngayKetThuc.toLocalDate();
+        return utils.dobFormat(localDate.getDayOfMonth(), localDate.getMonthValue(), localDate.getYear());
     }
     
     

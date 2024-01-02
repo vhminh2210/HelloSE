@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="423.0" prefWidth="631.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellose.AdminXoaNhanKhauController">
+   <children>
+      <Label layoutX="21.0" layoutY="14.0" prefHeight="17.0" prefWidth="249.0" text="Xóa nhân khẩu">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnBack" layoutX="572.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Back" />
+      <Label layoutX="21.0" layoutY="100.0" prefHeight="17.0" prefWidth="63.0" text="Họ và tên">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbTen" layoutX="85.0" layoutY="96.0" />
+      <Label layoutX="21.0" layoutY="140.0" prefHeight="17.0" prefWidth="63.0" text="Mã căn hộ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbMaCanHo" layoutX="85.0" layoutY="136.0" />
+      <Label layoutX="21.0" layoutY="179.0" prefHeight="17.0" prefWidth="63.0" text="CCCD">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbCCCD" layoutX="85.0" layoutY="175.0" />
+      <Label layoutX="21.0" layoutY="217.0" prefHeight="17.0" prefWidth="63.0" text="UserID">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbID" layoutX="85.0" layoutY="213.0" />
+      <TableView fx:id="tbQuanLy" layoutX="270.0" layoutY="81.0" prefHeight="201.0" prefWidth="343.0">
+        <columns>
+          <TableColumn fx:id="colID" prefWidth="27.33331298828125" text="ID" />
+          <TableColumn fx:id="colTen" prefWidth="123.3333740234375" text="Họ và tên" />
+            <TableColumn fx:id="colMaCanHo" prefWidth="81.33331298828125" text="Mã căn hộ" />
+            <TableColumn fx:id="colCCCD" prefWidth="112.00003051757812" text="CCCD" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnTimKiem" layoutX="127.0" layoutY="256.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Tìm kiếm" />
+      <Button fx:id="btnXoaNhanKhau" layoutX="515.0" layoutY="357.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="98.0" text="Xóa nhân khẩu" textFill="RED" />
+      <Label layoutX="14.0" layoutY="361.0" prefHeight="17.0" prefWidth="85.0" text="Ngày kết thúc">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbNgayKetThuc" layoutX="107.0" layoutY="357.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label layoutX="273.0" layoutY="361.0" prefHeight="17.0" prefWidth="221.0" text="Bắt buộc. Ghi theo định dạng dd/mm/yyyy">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="txLog" layoutX="20.0" layoutY="311.0" prefHeight="17.0" prefWidth="213.0">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
