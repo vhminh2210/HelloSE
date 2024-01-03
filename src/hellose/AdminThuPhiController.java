@@ -94,6 +94,7 @@ public class AdminThuPhiController extends SceneController implements Initializa
     private Label lbMaCanHo;
     @FXML
     private Label lbID;
+    @FXML
     private Button btnChinhSuaKhoanThu;
     @FXML
     private Button btnXuat;
