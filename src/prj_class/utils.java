@@ -41,4 +41,17 @@ public class utils {
         String res = words[2] + "-" + words[1] + "-" + words[0];
         return res;
     }
+    
+    public static boolean isNumeric(String strNum) {
+    /*Tham khảo: https://www.baeldung.com/java-check-string-number*/
+    if (strNum == null) {
+        return false;
+    }
+    try {
+        double d = Double.parseDouble(strNum);
+    } catch (NumberFormatException nfe) {
+        return false;
+    }
+    return true;
+}
 }

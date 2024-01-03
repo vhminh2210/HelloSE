@@ -170,7 +170,7 @@ public class AdminXoaNhanKhauController extends SceneController implements Initi
                 } catch (SQLException ex) {
                 Logger.getLogger(AdminThuPhiController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-		txLog.setText("Đã xóa các khoản thu được chọn!");
+		txLog.setText("Đã xóa các nhân khẩu được chọn!");
 	}
         System.out.println(query);
     }

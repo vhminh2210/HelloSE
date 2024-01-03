@@ -82,6 +82,14 @@ public class AdminThuPhiController extends SceneController implements Initializa
     private Button btnXoaKhoanThu;
     @FXML
     private TextField tbID;
+    @FXML
+    private Label lbNam;
+    @FXML
+    private Label lbMaCanHo;
+    @FXML
+    private Label lbID;
+    @FXML
+    private Button btnChinhSuaKhoanThu;
 
 
     public void thuPhiQuery(){
@@ -190,9 +198,13 @@ public class AdminThuPhiController extends SceneController implements Initializa
         }
         
         if(event.getSource() == btnTimKiem) thuPhiQuery();
-        if(event.getSource() == btnXoaKhoanThu){
-            
-            xoaKhoanPhi();
+        if(event.getSource() == btnXoaKhoanThu) xoaKhoanPhi();
+        if(event.getSource() == btnChinhSuaKhoanThu) {
+            try {
+                switchScene(event, "AdminChinhSuaKhoanThu.fxml");
+            } catch (IOException ex) {
+                Logger.getLogger(AdminThuPhiController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="498.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellose.AdminChinhSuaKhoanThuController">
+   <children>
+      <Label layoutX="30.0" layoutY="14.0" prefHeight="31.0" prefWidth="216.0" text="Chỉnh sửa khoản thu">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="30.0" layoutY="64.0" prefHeight="17.0" prefWidth="89.0" text="Mã khoản thu:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbID" layoutX="121.0" layoutY="60.0" prefHeight="25.0" prefWidth="167.0" />
+      <Label layoutX="28.0" layoutY="96.0" prefHeight="17.0" prefWidth="543.0" text="Nếu để trống mã khoản thu, mặc định chỉnh sửa lên tất cả bản ghi tìm được theo tên khoản thu.">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="30.0" layoutY="129.0" prefHeight="17.0" prefWidth="140.0" text="Tên khoản thu cũ chứa:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbTen" layoutX="170.0" layoutY="125.0" prefHeight="25.0" prefWidth="167.0" />
+      <Line endX="287.33331298828125" endY="1.52587890625E-5" layoutX="214.0" layoutY="204.0" startX="-100.0" />
+      <Label layoutX="25.0" layoutY="255.0" text="Tên khoản thu mới:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbTenMoi" layoutX="143.0" layoutY="251.0" prefHeight="25.0" prefWidth="429.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+      <Label layoutX="25.0" layoutY="290.0" text="Tháng thu mới:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbThangMoi" layoutX="143.0" layoutY="286.0" prefHeight="25.0" prefWidth="111.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+      <Label layoutX="24.0" layoutY="326.0" text="Trạng thái:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbTrangThaiMoi" layoutX="98.0" layoutY="322.0" prefHeight="25.0" prefWidth="111.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+      <Label layoutX="286.0" layoutY="290.0" text="Năm thu mới:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbNamMoi" layoutX="378.0" layoutY="286.0" prefHeight="25.0" prefWidth="111.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+      <Label layoutX="228.0" layoutY="326.0" text="Số tiền:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbSoTienMoi" layoutX="284.0" layoutY="322.0" prefHeight="25.0" prefWidth="111.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+      <Label layoutX="416.0" layoutY="326.0" text="Ghi chú:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbGhiChuMoi" layoutX="472.0" layoutY="322.0" prefHeight="25.0" prefWidth="111.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+      <Button fx:id="btnBack" layoutX="531.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Back" />
+      <Label layoutX="305.0" layoutY="60.0" prefHeight="17.0" prefWidth="267.0" text="Các khoản thu lẻ bắt buộc cần mã khoản thu">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="371.0" text="Mã căn hộ:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbMaCanHoMoi" layoutX="98.0" layoutY="367.0" prefHeight="25.0" prefWidth="111.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+      <Label layoutX="224.0" layoutY="371.0" prefHeight="17.0" prefWidth="267.0" text="Chỉ áp dụng đối với các khoản thu lẻ">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnCapNhat" layoutX="209.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="199.0" text="Cập nhật thông tin khoản thu" />
+      <Label layoutX="30.0" layoutY="163.0" text="Tháng thu cũ:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbThangCu" layoutX="148.0" layoutY="159.0" prefHeight="25.0" prefWidth="111.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+      <Label layoutX="291.0" layoutY="163.0" text="Năm thu cũ:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tbNamCu" layoutX="383.0" layoutY="159.0" prefHeight="25.0" prefWidth="111.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+      <Label layoutX="28.0" layoutY="217.0" prefHeight="17.0" prefWidth="267.0" text="Các thông tin để trống coi như không thay đổi">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="txLog" layoutX="24.0" layoutY="410.0" prefHeight="17.0" prefWidth="267.0">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
