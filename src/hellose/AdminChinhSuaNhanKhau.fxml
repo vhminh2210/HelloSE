@@ -60,7 +60,7 @@
       <TextField fx:id="tbNgaySinh" layoutX="96.0" layoutY="266.0" prefHeight="25.0" prefWidth="123.0" />
       <Label layoutX="242.0" layoutY="270.0" prefHeight="17.0" prefWidth="216.0" text="Định dạng ngày theo dd/mm/yyyy">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold Italic" size="12.0" />
          </font>
       </Label>
       <Label layoutX="26.0" layoutY="308.0" prefHeight="17.0" prefWidth="67.0" text="Quan hệ:">
@@ -81,18 +81,12 @@
          </font>
       </Label>
       <TextField fx:id="tbCoQuan" layoutX="96.0" layoutY="340.0" prefHeight="25.0" prefWidth="355.0" />
-      <Label layoutX="26.0" layoutY="377.0" prefHeight="17.0" prefWidth="67.0" text="Trạng thái:">
+      <Label layoutX="26.0" layoutY="380.0" prefHeight="17.0" prefWidth="89.0" text="Giới tính:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="tbTrangThai" layoutX="96.0" layoutY="373.0" prefHeight="25.0" prefWidth="123.0" />
-      <Label layoutX="242.0" layoutY="377.0" prefHeight="17.0" prefWidth="89.0" text="Giới tính:">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <TextField fx:id="tbGioiTinh" layoutX="328.0" layoutY="373.0" prefHeight="25.0" prefWidth="123.0" />
+      <TextField fx:id="tbGioiTinh" layoutX="96.0" layoutY="376.0" prefHeight="25.0" prefWidth="123.0" />
       <Button fx:id="btnChinhSua" layoutX="199.0" layoutY="431.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="149.0" text="Chỉnh sửa thông tin" />
       <Label fx:id="txLog" layoutX="27.0" layoutY="410.0" prefHeight="17.0" prefWidth="413.0" />
       <Button fx:id="btnBack" layoutX="399.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Back" />

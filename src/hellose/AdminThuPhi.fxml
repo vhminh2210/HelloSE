@@ -70,5 +70,6 @@
       </Label>
       <TextField fx:id="tbID" layoutX="80.0" layoutY="331.0" />
       <Button fx:id="btnChinhSuaKhoanThu" layoutX="438.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="127.0" text="Chỉnh sửa khoản thu" />
+      <Button fx:id="btnXuat" layoutX="337.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="73.0" text="Xuất CSV" />
    </children>
 </AnchorPane>

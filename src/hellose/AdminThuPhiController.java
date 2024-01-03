@@ -5,9 +5,15 @@
 package hellose;
 
 import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.OutputStreamWriter;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -88,9 +94,11 @@ public class AdminThuPhiController extends SceneController implements Initializa
     private Label lbMaCanHo;
     @FXML
     private Label lbID;
-    @FXML
     private Button btnChinhSuaKhoanThu;
-
+    @FXML
+    private Button btnXuat;
+    
+    private ResultSet rs;
 
     public void thuPhiQuery(){
         String qTrangThai = tbTrangThai.getText();
@@ -110,7 +118,6 @@ public class AdminThuPhiController extends SceneController implements Initializa
         
         System.out.println(query);
         
-        ResultSet rs;
         try {
             rs = dbquery.getSt().executeQuery(query);
             ObservableList <thuPhi> list = FXCollections.observableArrayList();
@@ -122,6 +129,44 @@ public class AdminThuPhiController extends SceneController implements Initializa
             else txLog.setText("Không tìm thấy kết quả phù hợp!");
         } catch (SQLException ex) {
             Logger.getLogger(ThuPhiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void xuatKhoanPhi(){
+        try{
+            rs.beforeFirst();
+            ResultSetMetaData metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+            try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("thuphi.csv"), StandardCharsets.UTF_8))) {
+                // Write the header row
+                for (int i = 1; i <= columnCount; i++) {
+                    writer.write(metaData.getColumnName(i));
+                    if (i < columnCount) {
+                        writer.write(",");
+                    }
+                }
+                writer.newLine();
+
+                // Write the data rows
+                while (rs.next()) {
+                    for (int i = 1; i <= columnCount; i++) {
+                        writer.write(rs.getString(i));
+                        if (i < columnCount) {
+                            writer.write(",");
+                        }
+                    }
+                    writer.newLine();
+                }
+
+                System.out.println("Data exported to CSV successfully!");
+                txLog.setText("Xuất CSV thành công!");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }
     }
     
@@ -185,6 +230,11 @@ public class AdminThuPhiController extends SceneController implements Initializa
     
     @FXML
     public void handleButtonAction(ActionEvent event){
+        if(event.getSource()== btnXuat)try{
+            xuatKhoanPhi();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
         if(event.getSource() == btnHome) try {
             switchScene(event, "HomePage.fxml");
         } catch (IOException ex) {
@@ -234,7 +284,7 @@ public class AdminThuPhiController extends SceneController implements Initializa
         // Danh sách thu phí theo căn hộ
         String query = "SELECT * FROM thuphi";
         try {
-            ResultSet rs = dbquery.getSt().executeQuery(query);
+            rs = dbquery.getSt().executeQuery(query);
             while(rs.next()){
                 thuPhi tmp = new thuPhi(rs);
                 thuPhi_list.add(tmp);
