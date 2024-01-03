@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2023 at 05:51 PM
+-- Generation Time: Jan 03, 2024 at 10:41 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -68,7 +68,7 @@ CREATE TABLE `nhankhau` (
 
 INSERT INTO `nhankhau` (`hoTen`, `cccd`, `maCanHo`, `userID`, `ngaySinh`, `thangSinh`, `namSinh`, `quanHe`, `ngheNghiep`, `coQuan`, `trangThai`, `gioiTinh`) VALUES
 ('Vương Hoàng Minh', '000020210590', 'BM0000', 1, 22, 10, 2003, 'ADMIN', 'Sinh viên', 'Trường Công nghệ Thông tin và Truyền thông, Đại học Bách Khoa Hà Nội', 'Có mặt', 'M'),
-('Nguyễn Văn A', '000012345678', 'BM0000', 5, NULL, NULL, 1980, 'Họ hàng', 'Kĩ sư phần mềm', 'Công ty A', 'Có mặt', 'M'),
+('Nguyễn Văn AA', '000012345678', 'BM0000', 5, NULL, NULL, 1980, 'Họ hàng', 'Kĩ sư phần mềm', 'Công ty ABC', 'Có mặt', 'M'),
 ('Lê Minh B', '0000112233', 'BM0001', 6, 30, 12, 1986, 'Chủ hộ', 'Kiến trúc sư', 'Xưởng kiến trúc', 'Có mặt', 'M'),
 ('Nguyễn Thị C', '0000556677', 'BM0001', 7, 20, 10, 1990, 'Vợ', 'GIáo viên', 'Trường Tiểu học ABC', 'Có mặt', 'F'),
 ('Lê Hoàng D', '0000111100', 'BM0001', 8, 23, 12, 2004, 'Con', 'Sinh viên', 'Đại học Bách Khoa Hà Nội', 'Có mặt', 'M'),
@@ -95,6 +95,27 @@ CREATE TABLE `nhankhau_canho` (
 
 INSERT INTO `nhankhau_canho` (`userID`, `maCanHo`, `ngayBatDau`, `ngayKetThuc`) VALUES
 (11, 'BM0002', '2023-12-31', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nhankhau_tamtru`
+--
+
+CREATE TABLE `nhankhau_tamtru` (
+  `userID` int(11) NOT NULL,
+  `maCanHo` varchar(20) NOT NULL,
+  `trangThai` varchar(11) NOT NULL,
+  `ngayBatDau` date NOT NULL,
+  `ngayKetThuc` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `nhankhau_tamtru`
+--
+
+INSERT INTO `nhankhau_tamtru` (`userID`, `maCanHo`, `trangThai`, `ngayBatDau`, `ngayKetThuc`) VALUES
+(8, 'BM0001', 'Tạm vắng', '2023-05-19', '2023-05-21');
 
 -- --------------------------------------------------------
 
