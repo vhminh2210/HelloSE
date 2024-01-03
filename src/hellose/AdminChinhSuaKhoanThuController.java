@@ -95,31 +95,32 @@ public class AdminChinhSuaKhoanThuController extends SceneController implements 
         String info = "";
         
         if(qTenMoi.length() > 0) {
-            query += " tenKhoanThu=" + utils.quoteWrap(qTenMoi);
+            query += " tenKhoanThu=" + utils.quoteWrap(qTenMoi) + ",";
             info += "Tên khoản thu mới: " + qTenMoi + "\n";
         }
         System.out.println(info);
         if(qThangMoi.length() > 0) {
-            query += " Thang=" + qThangMoi;
+            query += " Thang=" + qThangMoi + ",";
             info += "Tháng mới: " + qThangMoi + "\n";
         }
         if(qNamMoi.length() > 0) {
-            query += " Nam=" + qNamMoi;
+            query += " Nam=" + qNamMoi + ",";
             info += "Năm mới: " + qNamMoi + "\n";
         }
         if(qTrangThaiMoi.length() > 0) {
-            query += " trangThai=" + utils.quoteWrap(qTrangThaiMoi);
+            query += " trangThai=" + utils.quoteWrap(qTrangThaiMoi) + ",";
             info += "Trạng thái mới: " + qTrangThaiMoi + "\n";
         }
         if(qSoTienMoi.length() > 0) {
-            query += " soTien=" + qSoTienMoi;
+            query += " soTien=" + qSoTienMoi + ",";
             info += "Số tiền mới: " + qSoTienMoi + "\n";
         }
         if(qGhiChuMoi.length() > 0) {
-            query += " ghiChuMoi=" + utils.quoteWrap(qGhiChuMoi);
+            query += " ghiChuMoi=" + utils.quoteWrap(qGhiChuMoi) + ",";
             info += "Ghi chú mới: " + qGhiChuMoi + "\n";
         }
         
+        if(query.charAt(query.length() - 1) == ',') query = query.substring(0, query.length() - 1);
         query += "WHERE maKhoanThu > 0";
         
         if(qID.length() > 0) query += " AND maKhoanThu = " + qID;

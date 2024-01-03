@@ -77,6 +77,7 @@ public class SceneController{
             resizable.put("ChinhSuaTaiKhoan.fxml",false);
             resizable.put("ThemTaiKhoan.fxml",false);
             resizable.put("AdminChinhSuaKhoanThu.fxml",false);
+            resizable.put("AdminChinhSuaNhanKhau.fxml",false);
             SceneController.filled = true;
         }
         boolean res = resizable.get(fxml);
