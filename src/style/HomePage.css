@@ -5,7 +5,9 @@
 }
 
 .top_bar{
-    -fx-background-color: white; 
+    /* -fx-background-color: white; */
+    -fx-background-color: linear-gradient(to left, rgb(70, 70, 127) 0%, rgb(24, 19, 103) 50%);
+    /* -fx-background-color: linear-gradient(to left, rgb(70, 70, 127) 20%, rgb(24, 19, 103) 20%); */
 }
 
 .top_text{

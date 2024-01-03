@@ -224,7 +224,7 @@ public class TaiKhoanController extends SceneController implements Initializable
                 }else txWarning.setText("Người dùng không hợp lệ!");
                 change_user = null;
             }
-        }else txWarning.setText("Chức năng chỉ dành cho Admin");
+        }else txWarning.setText("Chức năng chỉ dành cho Admin!");
     }
 
     public void loadUser(User user){
