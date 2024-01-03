@@ -83,6 +83,8 @@ public class AdminNhanKhauController extends SceneController implements Initiali
     private User current_user;
     @FXML
     private Button btnChinhSua;
+    @FXML
+    private Button btnKhaiBao;
     
     @FXML
     public void handleButtonAction(ActionEvent event){
@@ -111,6 +113,13 @@ public class AdminNhanKhauController extends SceneController implements Initiali
         if(event.getSource() == btnChinhSua){
             try {
                 switchScene(event, "AdminChinhSuaNhanKhau.fxml");
+            } catch (IOException ex) {
+                Logger.getLogger(AdminNhanKhauController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if(event.getSource() == btnKhaiBao){
+            try {
+                switchScene(event, "AdminKhaiBaoTamTru.fxml");
             } catch (IOException ex) {
                 Logger.getLogger(AdminNhanKhauController.class.getName()).log(Level.SEVERE, null, ex);
             }

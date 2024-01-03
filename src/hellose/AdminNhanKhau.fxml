@@ -56,7 +56,7 @@
          </font>
       </Label>
       <TextField fx:id="tbMaCanHo" layoutX="81.0" layoutY="275.0" />
-      <Button fx:id="btnNhanKhauMoi" layoutX="528.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Thêm nhân khẩu mới" />
+      <Button fx:id="btnNhanKhauMoi" layoutX="531.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Thêm nhân khẩu mới" />
       <Label fx:id="lbID" layoutX="16.0" layoutY="314.0" text="UserID">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -64,6 +64,7 @@
       </Label>
       <TextField fx:id="tbID" layoutX="80.0" layoutY="310.0" />
       <Button fx:id="btnXoaNhanKhau" layoutX="677.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Xóa nhân khẩu" />
-      <Button fx:id="btnChinhSua" layoutX="378.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Chỉnh sửa nhân khẩu" />
+      <Button fx:id="btnChinhSua" layoutX="383.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Chỉnh sửa nhân khẩu" />
+      <Button fx:id="btnKhaiBao" layoutX="259.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Khai báo tạm trú" />
    </children>
 </AnchorPane>
