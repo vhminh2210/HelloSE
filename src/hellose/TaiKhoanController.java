@@ -124,10 +124,8 @@ public class TaiKhoanController extends SceneController implements Initializable
     @FXML
     void handleButtonAction(ActionEvent event) {
         change_user = null;
-        txWarning.setText("");
-        txOtherName.setText("");
-        txOtherPhone.setText("");
-        txOtherPermission.setText("");
+        // clearQuery();
+
         if(event.getSource() == btnHome) {
             try {
                 switchScene(event, "HomePage.fxml");
@@ -136,7 +134,7 @@ public class TaiKhoanController extends SceneController implements Initializable
             }
         }
 
-        if(event.getSource() == btnUserChangeInfo) {
+        else if(event.getSource() == btnUserChangeInfo) {
             try {
                 change_user = current_user;
                 switchScene(event, "ChinhSuaTaiKhoan.fxml");
@@ -146,7 +144,7 @@ public class TaiKhoanController extends SceneController implements Initializable
             }
         }
 
-        if(event.getSource() == btnUserChangePassword) {
+        else if(event.getSource() == btnUserChangePassword) {
             try {
                 change_user = current_user;
                 switchScene(event, "DoiMatKhau.fxml");
@@ -156,15 +154,17 @@ public class TaiKhoanController extends SceneController implements Initializable
             }
         }
 
-        if(event.getSource() == btnUserSignOut) {
+        else if(event.getSource() == btnUserSignOut) {
             try {
+                current_user = null;
+                hellose.HelloSE.setCurrent_user(null);
                 switchScene(event, "HelloSE.fxml");
             } catch (IOException ex) {
                 Logger.getLogger(TaiKhoanController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
-        if(current_user.getQuyenHan().equals("ADMIN")){
+        else if(current_user != null && current_user.getQuyenHan().equals("ADMIN")){
             if(event.getSource() == btnNewUser) {
                 try {
                     switchScene(event, "ThemTaiKhoan.fxml");
@@ -173,9 +173,9 @@ public class TaiKhoanController extends SceneController implements Initializable
                 }
             }
 
-            if(event.getSource() == btnTimKiem) TaiKhoanQuery();
+            else if(event.getSource() == btnTimKiem) TaiKhoanQuery();
 
-            if(event.getSource() == btnOtherChangeInfo) {
+            else if(event.getSource() == btnOtherChangeInfo) {
                 try {
                     change_user = query_user;
                     if(change_user != null) switchScene(event, "ChinhSuaTaiKhoan.fxml");
@@ -186,7 +186,7 @@ public class TaiKhoanController extends SceneController implements Initializable
                 }
             }
 
-            if(event.getSource() == btnOtherChangePassword) {
+            else if(event.getSource() == btnOtherChangePassword) {
                 try {
                     change_user = query_user;
                     if(change_user != null) switchScene(event, "DoiMatKhau.fxml");
@@ -197,32 +197,39 @@ public class TaiKhoanController extends SceneController implements Initializable
                 }
             }
 
-            if(event.getSource() == btnDeleteUser) {
+            else if(event.getSource() == btnDeleteUser) {
                 change_user = query_user;
                 if(change_user != null){
-                    int x = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn không?", "Xác nhận", 0);
-                    if(x == JOptionPane.YES_OPTION){
-                        String query = "DELETE FROM user WHERE userID = " + String.valueOf(change_user.getUserID());
+                    String password = JOptionPane.showInputDialog(null, "Nhập mật khẩu");
+                    if(password != null && password.compareTo(change_user.getPassWd()) == 0){
+                        int x = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn không?", "Xác nhận", 0);
+                        if(x == JOptionPane.YES_OPTION){
+                            String query = "DELETE FROM user WHERE userID = " + String.valueOf(change_user.getUserID());
 
-                        System.out.println(query);
+                            System.out.println(query);
 
-                        try {
-                            dbquery.getSt().executeUpdate(query);
-                            txWarning.setText("Xoá tài khoản thành công!");
-                            if(change_user.getUserID() == current_user.getUserID()){
-                                try {
-                                    switchScene(event, "HelloSE.fxml");
-                                } catch (IOException ex) {
-                                    Logger.getLogger(TaiKhoanController.class.getName()).log(Level.SEVERE, null, ex);
+                            try {
+                                dbquery.getSt().executeUpdate(query);
+                                txWarning.setText("Xoá tài khoản thành công!");
+                                query_user = null;
+                                if(change_user.getUserID() == current_user.getUserID()){
+                                    try {
+                                        current_user = null;
+                                        hellose.HelloSE.setCurrent_user(null);
+                                        switchScene(event, "HelloSE.fxml");
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(TaiKhoanController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
                                 }
+                            } catch (SQLException ex) {
+                                Logger.getLogger(TaiKhoanController.class.getName()).log(Level.SEVERE, null, ex);
+                                txWarning.setText("Xoá tài khoản không thành công!");
                             }
-                        } catch (SQLException ex) {
-                            Logger.getLogger(TaiKhoanController.class.getName()).log(Level.SEVERE, null, ex);
-                            txWarning.setText("Xoá tài khoản không thành công!");
                         }
-                    }
+                    }else JOptionPane.showMessageDialog(null, "Sai mật khẩu");
                 }else txWarning.setText("Người dùng không hợp lệ!");
                 change_user = null;
+                // query_user = null;
             }
         }else txWarning.setText("Chức năng chỉ dành cho Admin!");
     }
@@ -240,7 +247,16 @@ public class TaiKhoanController extends SceneController implements Initializable
         txOtherPermission.setText(other.getQuyenHan());
     }
 
+    public void clearQuery(){
+        txWarning.setText("");
+        txOtherName.setText("");
+        txOtherPhone.setText("");
+        txOtherPermission.setText("");
+    }
+
     public void TaiKhoanQuery(){
+        clearQuery();
+
         String OtherID = tbOtherID.getText();
         
         String query = "SELECT * FROM user WHERE userID = " + OtherID;

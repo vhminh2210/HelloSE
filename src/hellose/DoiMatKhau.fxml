@@ -7,7 +7,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellose.DoiMatKhauController">
    <children>
       <Button fx:id="btnHome" layoutX="500.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Home" />
@@ -36,7 +35,7 @@
          </font>
       </Label>
       <TextField fx:id="tbNewPassword2" layoutX="221.0" layoutY="271.0" prefHeight="25.0" prefWidth="200.0" />
-      <Text fx:id="txWarning" layoutX="75.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="275.0" />
+      <Text fx:id="txWarning" layoutX="75.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="400.0" />
       <Label fx:id="lbUserID" layoutX="75.0" layoutY="100.0" text="ID người dùng :">
          <font>
             <Font name="System Bold" size="12.0" />

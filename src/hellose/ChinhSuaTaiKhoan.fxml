@@ -7,7 +7,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellose.ChinhSuaTaiKhoanController">
    <children>
       <Button fx:id="btnHome" layoutX="500.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Home" />
@@ -45,7 +44,7 @@
       <Text fx:id="txUserName" layoutX="200.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="200.0" />
       <Text fx:id="txUserPhone" layoutX="200.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="200.0" />
       <Text fx:id="txUserPermission" layoutX="200.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="200.0" />
-      <Text fx:id="txWarning" layoutX="75.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="200.0" />
+      <Text fx:id="txWarning" layoutX="75.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="400.0" />
       <Button fx:id="btnChangeInfo" layoutX="256.0" layoutY="425.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Sửa thông tin" />
    </children>
 </AnchorPane>

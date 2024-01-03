@@ -46,7 +46,7 @@
       <TextField fx:id="tbPassWord" layoutX="200.0" layoutY="225.0" prefHeight="25.0" prefWidth="200.0" />
       <TextField fx:id="tbUserPhone" layoutX="200.0" layoutY="275.0" prefHeight="25.0" prefWidth="200.0" />
       <TextField fx:id="tbUserPermission" layoutX="200.0" layoutY="325.0" prefHeight="25.0" prefWidth="200.0" />
-      <Text fx:id="txWarning" layoutX="75.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="200.0" />
+      <Text fx:id="txWarning" layoutX="75.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="400.0" />
       <Button fx:id="btnNewUser" layoutX="251.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Thêm tài khoản" />
    </children>
 </AnchorPane>

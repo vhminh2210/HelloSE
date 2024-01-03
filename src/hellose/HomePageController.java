@@ -45,6 +45,8 @@ public class HomePageController extends SceneController implements Initializable
     @FXML
     private void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnLogout) try {
+            current_user = null;
+            hellose.HelloSE.setCurrent_user(null);
             switchScene(event, "HelloSE.fxml");
         } catch (IOException ex) {
             Logger.getLogger(HomePageController.class.getName()).log(Level.SEVERE, null, ex);

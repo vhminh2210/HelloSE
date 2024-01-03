@@ -131,7 +131,7 @@ public class ChinhSuaTaiKhoanController extends SceneController implements Initi
                 if(newName.compareTo("") != 0 && newName.compareTo(change_user.getUserName()) != 0) dbquery.getSt().executeUpdate(queryName);
                 if(newPhone.compareTo(change_user.getSdt()) != 0) dbquery.getSt().executeUpdate(queryPhone);
                 if(newPermission.compareTo("") != 0 && newPermission.compareTo(change_user.getQuyenHan()) != 0){
-                    if(current_user.getQuyenHan().equals("ADMIN")) dbquery.getSt().executeUpdate(queryName);
+                    if(current_user.getQuyenHan().equals("ADMIN")) dbquery.getSt().executeUpdate(queryPermission);
                     else warning += "Bạn cần là Admin để sửa quyền hạn!\n";
                 }
                 rs = dbquery.getSt().executeQuery(query2);
@@ -139,7 +139,7 @@ public class ChinhSuaTaiKhoanController extends SceneController implements Initi
                 if(String.valueOf(new_user.getUserID()).compareTo(newID) == 0 && new_user.getUserID() != change_user.getUserID()) warning += "Sửa ID người dùng thành công!";
                 if(new_user.getUserName().compareTo(newName) == 0 && new_user.getUserName().compareTo(change_user.getUserName()) != 0) warning += "Sửa Tên người dùng thành công!";
                 if(new_user.getSdt().compareTo(newPhone) == 0 && new_user.getSdt().compareTo(change_user.getSdt()) != 0) warning += "Sửa SĐT người dùng thành công!";
-                if(new_user.getQuyenHan().compareTo(newID) == 0 && new_user.getQuyenHan().compareTo(change_user.getQuyenHan()) != 0) warning += "Sửa Quyền hạn người dùng thành công!";
+                if(new_user.getQuyenHan().compareTo(newPermission) == 0 && new_user.getQuyenHan().compareTo(change_user.getQuyenHan()) != 0) warning += "Sửa Quyền hạn người dùng thành công!";
                 if(new_user != null) change_user = new_user;
                 txWarning.setText(warning);
                 loadUser(change_user);
