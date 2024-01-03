@@ -48,17 +48,17 @@ public class dbConnection {
         if(default_conn == null){
             try {
                 default_conn = null;
-                 String dbURL = "jdbc:mysql://localhost:3306/hellose_db";
-                 String username = "root";
-                 String password = "";
+//                 String dbURL = "jdbc:mysql://localhost:3306/hellose_db";
+//                 String username = "root";
+//                 String password = "";
 
                 // String dbURL = "jdbc:mysql://sql12.freesqldatabase.com:3306/sql12664450";
                 // String username = "sql12664450";
                 // String password = "uj7HSxrHlz";
 
-//                String dbURL = "jdbc:mysql://hellose1234.mysql.database.azure.com:3306/hellose_db";
-//                String username = "gigachad";
-//                String password = "Nhat2003!";
+                String dbURL = "jdbc:mysql://hellose1234.mysql.database.azure.com:3306/hellose_db?useUnicode=true&characterEncoding=UTF-8";
+                String username = "gigachad";
+                String password = "Nhat2003!";
 
                 //Tạo kết nối
                 default_conn = (Connection) DriverManager.getConnection(dbURL, username, password);

@@ -4,6 +4,10 @@
  */
 package hellose;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.io.IOException;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
@@ -11,18 +15,24 @@ import java.io.FileWriter;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.ResourceBundle;
+
+import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -33,6 +43,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+
 import prj_class.User;
 import prj_class.dbConnection;
 import prj_class.dbQuery;
@@ -120,7 +131,8 @@ public class AdminThuPhiController extends SceneController implements Initializa
         System.out.println(query);
         
         try {
-            rs = dbquery.getSt().executeQuery(query);
+            Statement st = dbquery.getConn().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            rs = st.executeQuery(query);
             ObservableList <thuPhi> list = FXCollections.observableArrayList();
             while(rs.next()){
                 thuPhi tmp = new thuPhi(rs);
@@ -136,34 +148,37 @@ public class AdminThuPhiController extends SceneController implements Initializa
     public void xuatKhoanPhi(){
         try{
             rs.beforeFirst();
+            
+            // Create workbook
+            XSSFWorkbook workbook = new XSSFWorkbook();
+
+            // Create a sheet in the workbook
+            org.apache.poi.ss.usermodel.Sheet sheet = workbook.createSheet("Sheet1");
+            // Create the header row
+            Row headerRow = sheet.createRow(0);
+            
             ResultSetMetaData metaData = rs.getMetaData();
             int columnCount = metaData.getColumnCount();
-            try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("thuphi.csv"), StandardCharsets.UTF_8))) {
-                // Write the header row
+            
+            for (int i = 1; i <= columnCount; i++) {
+                Cell cell = headerRow.createCell(i - 1);
+                cell.setCellValue(metaData.getColumnName(i));
+            }
+
+            // Populate the data rows
+            int rowNum = 1;
+            while (rs.next()) {
+                Row dataRow = sheet.createRow(rowNum++);
                 for (int i = 1; i <= columnCount; i++) {
-                    writer.write(metaData.getColumnName(i));
-                    if (i < columnCount) {
-                        writer.write(",");
-                    }
+                    Cell cell = dataRow.createCell(i - 1);
+                    String s = rs.getString(i);
+                    if (s==null) s = "-1";
+                    cell.setCellValue(s);
                 }
-                writer.newLine();
-
-                // Write the data rows
-                while (rs.next()) {
-                    for (int i = 1; i <= columnCount; i++) {
-                        writer.write(rs.getString(i));
-                        if (i < columnCount) {
-                            writer.write(",");
-                        }
-                    }
-                    writer.newLine();
-                }
-
-                System.out.println("Data exported to CSV successfully!");
-                txLog.setText("Xuất CSV thành công!");
-
-            } catch (Exception e) {
-                e.printStackTrace();
+            }
+            // Write the workbook to a file
+            try (FileOutputStream fileOut = new FileOutputStream("thuphi.xlsx")) {
+                workbook.write(fileOut);
             }
         }
         catch(Exception e){
@@ -285,7 +300,8 @@ public class AdminThuPhiController extends SceneController implements Initializa
         // Danh sách thu phí theo căn hộ
         String query = "SELECT * FROM thuphi";
         try {
-            rs = dbquery.getSt().executeQuery(query);
+            Statement st = dbquery.getConn().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            rs = st.executeQuery(query);
             while(rs.next()){
                 thuPhi tmp = new thuPhi(rs);
                 thuPhi_list.add(tmp);
