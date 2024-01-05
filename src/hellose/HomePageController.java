@@ -73,7 +73,7 @@ public class HomePageController extends SceneController implements Initializable
         }
 
         if(event.getSource() == btnHomThu) try {
-            switchScene(event, "DangPhatTrien.fxml");
+            switchScene(event, "AdminThongBao.fxml");
         } catch (IOException ex) {
             Logger.getLogger(HomePageController.class.getName()).log(Level.SEVERE, null, ex);
         }
