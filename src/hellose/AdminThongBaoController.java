@@ -60,10 +60,17 @@ public class AdminThongBaoController extends SceneController implements Initiali
     @FXML
     private Label lbWarning;
 
+    @FXML
+    private Label lbMaThongBao;
+
+    @FXML
+    private TextField txfThongbao;
+
     private User current_user;
     private dbQuery dbquery;
     private dbConnection dbconn;
     private ObservableList <thongbao> adminthongbao_list;
+    private static String maTB;
 
     @FXML
     void handleButtonAction(ActionEvent event) {
@@ -72,25 +79,35 @@ public class AdminThongBaoController extends SceneController implements Initiali
         } catch (IOException ex) {
             Logger.getLogger(AdminThongBaoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(event.getSource() == xoathongbao)  {
-            delthongbao();
-        }
+
         if(event.getSource() == homthu) try {
             switchScene(event, "AdminHomThu.fxml");
         } catch (IOException ex) {
             Logger.getLogger(AdminThongBaoController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         if(current_user.getQuyenHan().equals("ADMIN")){
+            if(event.getSource() == xoathongbao){
+                maTB = txfThongbao.getText();
+                if(maTB != null && maTB.length()>0) delthongbao();           
+                else lbWarning.setText("Mã Thông báo không hợp lệ!");
+                maTB = null;
+            }
+
             if(event.getSource() == taothongbao){
                 try {
-                    switchScene(event, "AdminThongBao.fxml");
+                    switchScene(event, "ThongBaoMoi.fxml");
                 } catch (IOException ex) {
                     Logger.getLogger(AdminThongBaoController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+
             if(event.getSource() == suathongbao){
                 try {
-                    switchScene(event, "AdminThongBao.fxml");
+                    maTB = txfThongbao.getText();
+                    if(maTB != null && maTB.length()>0) switchScene(event, "SuaThongBao.fxml");
+                    else lbWarning.setText("Mã Thông báo không hợp lệ!");
+                    maTB = null;
                 } catch (IOException ex) {
                     Logger.getLogger(AdminThongBaoController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -98,12 +115,8 @@ public class AdminThongBaoController extends SceneController implements Initiali
         }else lbWarning.setText("Chức năng chỉ dành cho Admin!");
     }
 
-    public void initialize(URL url, ResourceBundle rb) {
-        current_user = hellose.HelloSE.getCurrent_user();
-        dbconn = new dbConnection();
-        dbquery = new dbQuery(dbconn.getConn());
+    public void showThongBao(){
         adminthongbao_list = FXCollections.observableArrayList();
-
         String query = "SELECT * FROM adminthongbao";
 
         System.out.println(query);
@@ -120,6 +133,15 @@ public class AdminThongBaoController extends SceneController implements Initiali
 
         showList(adminthongbao_list);
     }
+
+    public void initialize(URL url, ResourceBundle rb) {
+        current_user = hellose.HelloSE.getCurrent_user();
+        dbconn = new dbConnection();
+        dbquery = new dbQuery(dbconn.getConn());
+        maTB = null;
+
+        showThongBao();
+    }
     public void showList(ObservableList <thongbao> list){
         if(list.size() == 0){
             txLog.setText("Không tìm thấy kết quả phù hợp!");
@@ -132,7 +154,7 @@ public class AdminThongBaoController extends SceneController implements Initiali
         if(list != null) tbthongbao.setItems(list);
     }
     public void delthongbao(){
-        String query = "DELETE * FROM adminthongbao";
+        String query = "DELETE FROM adminthongbao WHERE mathongbao = \"" + maTB +"\"";
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Xóa thông báo");
         alert.setHeaderText("Bạn có chắc muốn xóa thông báo?");
@@ -145,11 +167,12 @@ public class AdminThongBaoController extends SceneController implements Initiali
             } catch (SQLException ex) {
                 Logger.getLogger(AdminThongBaoController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            txLog.setText("Đã xóa các thông báo!");
+            txLog.setText("Xóa thông báo thành công!");
+            showThongBao();
         }
         System.out.println(query);
     }
-    public void homthu(){
-
+    public static String getMaTB(){
+        return maTB;
     }
 }
