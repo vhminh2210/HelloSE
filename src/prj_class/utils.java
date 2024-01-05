@@ -4,6 +4,18 @@
  */
 package prj_class;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.FileOutputStream;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 public class utils {
     public static String dobFormat(int ngaySinh, int thangSinh, int namSinh){
         String d, m, y;
@@ -53,5 +65,47 @@ public class utils {
         return false;
     }
     return true;
-}
+    }
+
+    public static void xuatFile(ResultSet rs, String name){
+        try{
+            rs.beforeFirst();
+            
+            // Create workbook
+            XSSFWorkbook workbook = new XSSFWorkbook();
+
+            // Create a sheet in the workbook
+            org.apache.poi.ss.usermodel.Sheet sheet = workbook.createSheet("Sheet1");
+            // Create the header row
+            Row headerRow = sheet.createRow(0);
+            
+            ResultSetMetaData metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+            
+            for (int i = 1; i <= columnCount; i++) {
+                Cell cell = headerRow.createCell(i - 1);
+                cell.setCellValue(metaData.getColumnName(i));
+            }
+
+            // Populate the data rows
+            int rowNum = 1;
+            while (rs.next()) {
+                Row dataRow = sheet.createRow(rowNum++);
+                for (int i = 1; i <= columnCount; i++) {
+                    Cell cell = dataRow.createCell(i - 1);
+                    String s = rs.getString(i);
+                    if (s==null) s = "-1";
+                    cell.setCellValue(s);
+                }
+            }
+            // Write the workbook to a file
+            try (FileOutputStream fileOut = new FileOutputStream(name + ".xlsx")) {
+                workbook.write(fileOut);
+                workbook.close();
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 }

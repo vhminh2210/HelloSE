@@ -9,17 +9,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="566.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellose.AdminThuPhiController">
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="566.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellose.AdminThuPhiController">
    <children>
-      <TableView fx:id="tbQuanLy" layoutX="259.0" layoutY="109.0" prefHeight="329.0" prefWidth="523.0">
+      <TableView fx:id="tbQuanLy" layoutX="250.0" layoutY="115.0" prefHeight="330.0" prefWidth="550.0">
         <columns>
-          <TableColumn fx:id="colID" prefWidth="35.333343505859375" text="ID" />
-            <TableColumn fx:id="colMaCanHo" minWidth="5.99993896484375" prefWidth="81.33331298828125" text="Mã căn hộ" />
-            <TableColumn fx:id="colTenKhoanThu" prefWidth="120.66668701171875" text="Tên khoản thu" />
-            <TableColumn fx:id="colThang" prefWidth="52.666595458984375" text="Tháng" />
-            <TableColumn fx:id="colSoTien" prefWidth="77.33331298828125" text="Số tiền" />
-            <TableColumn fx:id="colTrangThai" prefWidth="79.333251953125" text="Trạng thái" />
-            <TableColumn fx:id="colGhiChu" prefWidth="76.666748046875" text="Ghi chú" />
+          <TableColumn fx:id="colID" prefWidth="45.0" text="ID" />
+            <TableColumn fx:id="colMaCanHo" minWidth="5.99993896484375" prefWidth="85.0" text="Mã căn hộ" />
+            <TableColumn fx:id="colTenKhoanThu" prefWidth="120.0" text="Tên khoản thu" />
+            <TableColumn fx:id="colThang" prefWidth="65.0" text="Tháng" />
+            <TableColumn fx:id="colSoTien" prefWidth="70.0" text="Số tiền" />
+            <TableColumn fx:id="colTrangThai" prefWidth="90.0" text="Trạng thái" />
+            <TableColumn fx:id="colGhiChu" prefWidth="70.0" text="Ghi chú" />
         </columns>
       </TableView>
       <Label layoutX="18.0" layoutY="174.0" prefHeight="17.0" prefWidth="63.0" text="Trạng thái">
@@ -43,7 +43,7 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Button fx:id="btnHome" layoutX="731.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Home" />
+      <Button fx:id="btnHome" layoutX="730.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Home" />
       <Label fx:id="lbNam" layoutX="17.0" layoutY="237.0" text="Năm">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -61,15 +61,15 @@
          </font>
       </Label>
       <TextField fx:id="tbMaCanHo" layoutX="81.0" layoutY="296.0" />
-      <Button fx:id="btnKhoanThuMoi" layoutX="587.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Tạo khoản thu mới" />
-      <Button fx:id="btnXoaKhoanThu" layoutX="446.0" layoutY="459.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="149.0" text="Xóa các khoản thu" />
+      <Button fx:id="btnKhoanThuMoi" layoutX="415.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Tạo khoản thu mới" />
+      <Button fx:id="btnXoaKhoanThu" layoutX="560.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="149.0" text="Xóa các khoản thu" />
       <Label fx:id="lbID" layoutX="16.0" layoutY="335.0" text="ID">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
       <TextField fx:id="tbID" layoutX="80.0" layoutY="331.0" />
-      <Button fx:id="btnChinhSuaKhoanThu" layoutX="438.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="127.0" text="Chỉnh sửa khoản thu" />
-      <Button fx:id="btnXuat" layoutX="337.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="73.0" text="Xuất CSV" />
+      <Button fx:id="btnChinhSuaKhoanThu" layoutX="260.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="127.0" text="Chỉnh sửa khoản thu" />
+      <Button fx:id="btnXuat" layoutX="260.0" layoutY="60.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="73.0" text="Xuất file" />
    </children>
 </AnchorPane>

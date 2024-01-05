@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="597.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellose.AdminNhanKhauController">
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="597.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellose.AdminNhanKhauController">
    <children>
       <TableView fx:id="tbQuanLy" layoutX="259.0" layoutY="109.0" prefHeight="337.0" prefWidth="582.0">
         <columns>
@@ -65,6 +65,7 @@
       <TextField fx:id="tbID" layoutX="80.0" layoutY="310.0" />
       <Button fx:id="btnXoaNhanKhau" layoutX="677.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Xóa nhân khẩu" />
       <Button fx:id="btnChinhSua" layoutX="383.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Chỉnh sửa nhân khẩu" />
-      <Button fx:id="btnKhaiBao" layoutX="259.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Khai báo tạm trú" />
+      <Button fx:id="btnKhaiBao" layoutX="260.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Khai báo tạm trú" />
+      <Button fx:id="btnXuat" layoutX="260.0" layoutY="60.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="73.0" text="Xuất file" />
    </children>
 </AnchorPane>

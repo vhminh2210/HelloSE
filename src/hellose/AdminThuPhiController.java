@@ -4,10 +4,6 @@
  */
 package hellose;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import java.io.IOException;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
@@ -145,47 +141,6 @@ public class AdminThuPhiController extends SceneController implements Initializa
         }
     }
     
-    public void xuatKhoanPhi(){
-        try{
-            rs.beforeFirst();
-            
-            // Create workbook
-            XSSFWorkbook workbook = new XSSFWorkbook();
-
-            // Create a sheet in the workbook
-            org.apache.poi.ss.usermodel.Sheet sheet = workbook.createSheet("Sheet1");
-            // Create the header row
-            Row headerRow = sheet.createRow(0);
-            
-            ResultSetMetaData metaData = rs.getMetaData();
-            int columnCount = metaData.getColumnCount();
-            
-            for (int i = 1; i <= columnCount; i++) {
-                Cell cell = headerRow.createCell(i - 1);
-                cell.setCellValue(metaData.getColumnName(i));
-            }
-
-            // Populate the data rows
-            int rowNum = 1;
-            while (rs.next()) {
-                Row dataRow = sheet.createRow(rowNum++);
-                for (int i = 1; i <= columnCount; i++) {
-                    Cell cell = dataRow.createCell(i - 1);
-                    String s = rs.getString(i);
-                    if (s==null) s = "-1";
-                    cell.setCellValue(s);
-                }
-            }
-            // Write the workbook to a file
-            try (FileOutputStream fileOut = new FileOutputStream("thuphi.xlsx")) {
-                workbook.write(fileOut);
-            }
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-    
     public void xoaKhoanPhi(){
         String qTrangThai = tbTrangThai.getText();
         String qKhoanThu = tbKhoanThu.getText();
@@ -247,7 +202,7 @@ public class AdminThuPhiController extends SceneController implements Initializa
     @FXML
     public void handleButtonAction(ActionEvent event){
         if(event.getSource()== btnXuat)try{
-            xuatKhoanPhi();
+            if(rs != null) utils.xuatFile(rs, "thuphi");
         } catch (Exception e){
             e.printStackTrace();
         }

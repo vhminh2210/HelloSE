@@ -8,10 +8,13 @@ package hellose;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -133,6 +136,34 @@ public class HelloSEController extends SceneController implements Initializable 
         }
     }
 
+    // work in progress
+    public void resetDB(){
+        try {
+            String data = "";
+            String Data = "";
+            File myObj = new File("SQL.sql");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                data = myReader.nextLine();
+                System.out.println(data);
+                if(data != null && data.length()>1) Data += data;
+                if(data != null && data.length()>1 &&data.charAt(data.length() - 1) == ';'){
+                    System.out.println(Data);
+                    Data = "";
+                }
+            }
+            // try {
+            //     query.getSt().executeUpdate(data);
+            // } catch (SQLException ex) {
+            //     Logger.getLogger(HelloSEController.class.getName()).log(Level.SEVERE, null, ex);
+            // }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -140,6 +171,7 @@ public class HelloSEController extends SceneController implements Initializable 
         this.query = new dbQuery(dbconn.getConn());
         imgvBg.fitWidthProperty().bind(rootPane.widthProperty());
         imgvBg.fitHeightProperty().bind(rootPane.heightProperty());
+        // resetDB();
     }    
 
 }

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -76,6 +77,8 @@ public class AdminNhanKhauController extends SceneController implements Initiali
     private TextField tbID;
     @FXML
     private Button btnXoaNhanKhau;
+    @FXML
+    private Button btnXuat;
     
     private ObservableList <nhanKhau> nhanKhau_list;
     private dbQuery dbquery;
@@ -85,9 +88,16 @@ public class AdminNhanKhauController extends SceneController implements Initiali
     private Button btnChinhSua;
     @FXML
     private Button btnKhaiBao;
+
+    ResultSet rs;
     
     @FXML
     public void handleButtonAction(ActionEvent event){
+        if(event.getSource()== btnXuat)try{
+            if(rs != null) utils.xuatFile(rs, "nhankhau");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
         if(event.getSource() == btnNhanKhauMoi) {
             try {
                 switchScene(event, "AdminNhanKhauMoi.fxml");
@@ -163,9 +173,11 @@ public class AdminNhanKhauController extends SceneController implements Initiali
         
         System.out.println(query);
         
-        ResultSet rs;
+        // ResultSet rs;
         try {
-            rs = dbquery.getSt().executeQuery(query);
+            // rs = dbquery.getSt().executeQuery(query);
+            Statement st = dbquery.getConn().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            rs = st.executeQuery(query);
             ObservableList <nhanKhau> list = FXCollections.observableArrayList();
             while(rs.next()){
                 nhanKhau tmp = new nhanKhau(rs);
@@ -187,9 +199,11 @@ public class AdminNhanKhauController extends SceneController implements Initiali
         
         // Danh sách thu phí theo căn hộ
         String query = "SELECT * FROM nhankhau";
-        ResultSet rs;
+        // ResultSet rs;
         try {
-            rs = dbquery.getSt().executeQuery(query);
+            // rs = dbquery.getSt().executeQuery(query);
+            Statement st = dbquery.getConn().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            rs = st.executeQuery(query);
             while(rs.next()){
             nhanKhau tmp = new nhanKhau(rs);
             nhanKhau_list.add(tmp);

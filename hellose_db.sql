@@ -11,6 +11,9 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+-- DROP DATABASE hellose1234;
+
+USE hellose1234;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,6 +30,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `canho`
 --
 
+DROP TABLE `canho`;
 CREATE TABLE `canho` (
   `maCanHo` varchar(6) NOT NULL,
   `dienTich` float NOT NULL,
@@ -47,6 +51,7 @@ INSERT INTO `canho` (`maCanHo`, `dienTich`, `soXeMay`, `soXeHoi`) VALUES
 -- Table structure for table `nhankhau`
 --
 
+DROP TABLE `nhankhau`;
 CREATE TABLE `nhankhau` (
   `hoTen` varchar(50) NOT NULL,
   `cccd` varchar(12) NOT NULL,
@@ -82,6 +87,7 @@ INSERT INTO `nhankhau` (`hoTen`, `cccd`, `maCanHo`, `userID`, `ngaySinh`, `thang
 -- Table structure for table `nhankhau_canho`
 --
 
+DROP TABLE `nhankhau_canho`;
 CREATE TABLE `nhankhau_canho` (
   `userID` int(11) NOT NULL,
   `maCanHo` varchar(20) NOT NULL,
@@ -102,6 +108,7 @@ INSERT INTO `nhankhau_canho` (`userID`, `maCanHo`, `ngayBatDau`, `ngayKetThuc`) 
 -- Table structure for table `nhankhau_tamtru`
 --
 
+DROP TABLE `nhankhau_tamtru`;
 CREATE TABLE `nhankhau_tamtru` (
   `userID` int(11) NOT NULL,
   `maCanHo` varchar(20) NOT NULL,
@@ -123,6 +130,7 @@ INSERT INTO `nhankhau_tamtru` (`userID`, `maCanHo`, `trangThai`, `ngayBatDau`, `
 -- Table structure for table `thuphi`
 --
 
+DROP TABLE `thuphi`;
 CREATE TABLE `thuphi` (
   `maCanHo` varchar(6) NOT NULL,
   `tenKhoanThu` varchar(50) NOT NULL,
@@ -150,6 +158,7 @@ INSERT INTO `thuphi` (`maCanHo`, `tenKhoanThu`, `Thang`, `Nam`, `soTien`, `trang
 -- Table structure for table `user`
 --
 
+DROP TABLE `user`;
 CREATE TABLE `user` (
   `userID` int(11) NOT NULL,
   `userName` varchar(50) NOT NULL,
@@ -169,6 +178,46 @@ INSERT INTO `user` (`userID`, `userName`, `sdt`, `passWd`, `quyenHan`) VALUES
 (4, 'DucNM_5196', '', '20215196', 'ADMIN'),
 (5, 'resident_1', '', '12345678', 'Cư dân'),
 (6, 'resident_2', '', '12345678', 'Cư dân');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `adminthongbao`
+--
+
+DROP TABLE `adminthongbao`;
+CREATE TABLE `adminthongbao` (
+    `mathongbao` VARCHAR(6) PRIMARY KEY,
+    `ngaythongbao` DATE,
+    `noidung` TEXT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `adminthongbao`
+--
+
+INSERT INTO `adminthongbao` (`mathongbao`, `ngaythongbao`, `noidung`) VALUES ('0001', '2023-01-01', 'chuc mung nam moi');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `adminhomthu`
+--
+
+DROP TABLE `adminhomthu`;
+CREATE TABLE `adminhomthu` (
+    `mahomthu` VARCHAR(6) PRIMARY KEY,
+    `ngayGopY` DATE,
+    `userID` int(11) NOT NULL,
+    `noidung` TEXT
+    FOREIGN KEY (`userID`) REFERENCES `user`(`userID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `adminhomthu`
+--
+
+INSERT INTO `adminhomthu` (`mahomthu`, `ngayGopY`,`userID`, `noidung`) VALUES ('0001', '2023-01-01',1, 'chuc mung nam moi');
 
 --
 -- Indexes for dumped tables
