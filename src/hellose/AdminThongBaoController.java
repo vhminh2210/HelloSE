@@ -60,6 +60,7 @@ public class AdminThongBaoController extends SceneController implements Initiali
     @FXML
     private Label lbWarning;
 
+    private User current_user;
     private dbQuery dbquery;
     private dbConnection dbconn;
     private ObservableList <thongbao> adminthongbao_list;
@@ -81,13 +82,24 @@ public class AdminThongBaoController extends SceneController implements Initiali
         }
         if(current_user.getQuyenHan().equals("ADMIN")){
             if(event.getSource() == taothongbao){
-
+                try {
+                    switchScene(event, "AdminThongBao.fxml");
+                } catch (IOException ex) {
+                    Logger.getLogger(AdminThongBaoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-            if(event.getSource() == suathongbao)
+            if(event.getSource() == suathongbao){
+                try {
+                    switchScene(event, "AdminThongBao.fxml");
+                } catch (IOException ex) {
+                    Logger.getLogger(AdminThongBaoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }else lbWarning.setText("Chức năng chỉ dành cho Admin!");
     }
 
     public void initialize(URL url, ResourceBundle rb) {
+        current_user = hellose.HelloSE.getCurrent_user();
         dbconn = new dbConnection();
         dbquery = new dbQuery(dbconn.getConn());
         adminthongbao_list = FXCollections.observableArrayList();
