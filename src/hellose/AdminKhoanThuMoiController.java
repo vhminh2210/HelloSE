@@ -213,6 +213,7 @@ public class AdminKhoanThuMoiController extends SceneController implements Initi
         String QUERY = tbbSQL.getText();
         try {
             dbquery.getSt().executeUpdate(QUERY);
+            lbLog.setText("Tạo truy vấn trên SQL thành công!");
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(AdminKhoanThuMoiController.class.getName()).log(Level.SEVERE, null, ex);

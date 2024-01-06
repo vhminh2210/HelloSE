@@ -48,9 +48,9 @@ public class dbConnection {
         if(default_conn == null){
             try {
                 default_conn = null;
-                //  String dbURL = "jdbc:mysql://localhost:3306/hellose_db";
-                //  String username = "root";
-                //  String password = "";
+//                  String dbURL = "jdbc:mysql://localhost:3306/hellose_db";
+//                  String username = "root";
+//                  String password = "";
 
                 // String dbURL = "jdbc:mysql://sql12.freesqldatabase.com:3306/sql12664450";
                 // String username = "sql12664450";
