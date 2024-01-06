@@ -65,6 +65,18 @@ public class ThuPhiController extends SceneController implements Initializable {
     private TextField tbNam;
     @FXML
     private Text txLog;
+    @FXML
+    private Label lbChuaDong;
+    @FXML
+    private Label lbDaDong;
+    @FXML
+    private Label lbSum;
+    @FXML
+    private Label lbxChuaDong;
+    @FXML
+    private Label lbxDaDong;
+    @FXML
+    private Label lbxSum;
     
     private ObservableList <thuPhi> thuPhi_list;
     private dbQuery dbquery;
@@ -78,11 +90,16 @@ public class ThuPhiController extends SceneController implements Initializable {
         String qThang = tbThang.getText();
         String qNam = tbNam.getText();
         
-        String query = "SELECT * FROM thuphi WHERE Thang > 0";
-        if(qTrangThai.length() > 0) query += " AND trangThai = " + utils.quoteWrap(qTrangThai);
-        if(qKhoanThu.length() > 0) query += " AND tenKhoanThu LIKE " + utils.quoteWrap("%" + qKhoanThu + "%");
-        if(qThang.length() > 0) query += " AND Thang = " + String.valueOf(qThang);
-        if(qNam.length() > 0) query += " AND Nam = " + String.valueOf(qNam);
+        String backquery = "FROM thuphi WHERE Thang > 0";
+        if(qTrangThai.length() > 0) backquery += " AND trangThai = " + utils.quoteWrap(qTrangThai);
+        if(qKhoanThu.length() > 0) backquery += " AND tenKhoanThu LIKE " + utils.quoteWrap("%" + qKhoanThu + "%");
+        if(qThang.length() > 0) backquery += " AND Thang = " + String.valueOf(qThang);
+        if(qNam.length() > 0) backquery += " AND Nam = " + String.valueOf(qNam);
+
+        String query = "SELECT * " + backquery;
+        String querysum = "SELECT SUM(soTien) AS tong " + backquery;
+        String queryDaDong = "SELECT SUM(soTien) AS tong " + backquery + " AND trangThai = \"Đã đóng\"";
+        String queryChuaDong= "SELECT SUM(soTien) AS tong " + backquery + " AND trangThai = \"Chưa đóng\"";
         
         System.out.println(query);
         
@@ -94,6 +111,15 @@ public class ThuPhiController extends SceneController implements Initializable {
                 thuPhi tmp = new thuPhi(rs);
                 list.add(tmp);
             }
+            rs = dbquery.getSt().executeQuery(querysum);
+            if(rs.next() && rs.getString("tong") != null) lbxSum.setText(rs.getString("tong"));
+            else lbxSum.setText("0");
+            rs = dbquery.getSt().executeQuery(queryDaDong);
+            if(rs.next() && rs.getString("tong") != null) lbxDaDong.setText(rs.getString("tong"));
+            else lbxDaDong.setText("0");
+            rs = dbquery.getSt().executeQuery(queryChuaDong);
+            if(rs.next() && rs.getString("tong") != null) lbxChuaDong.setText(rs.getString("tong"));
+            else lbxChuaDong.setText("0");
             if(list != null) showList(list);
             else txLog.setText("Không tìm thấy kết quả phù hợp!");
         } catch (SQLException ex) {
@@ -146,12 +172,24 @@ public class ThuPhiController extends SceneController implements Initializable {
         
         // Danh sách thu phí theo căn hộ
         query = "SELECT * FROM thuphi WHERE maCanHo = " + utils.quoteWrap(current_maCanHo);
+        String querysum = "SELECT SUM(soTien) AS tong FROM thuphi WHERE maCanHo = " + utils.quoteWrap(current_maCanHo);
+        String queryDaDong = "SELECT SUM(soTien) AS tong FROM thuphi WHERE maCanHo = " + utils.quoteWrap(current_maCanHo) + " AND trangThai = \"Đã đóng\"";
+        String queryChuaDong= "SELECT SUM(soTien) AS tong FROM thuphi WHERE maCanHo = " + utils.quoteWrap(current_maCanHo) + " AND trangThai = \"Chưa đóng\"";
         try {
             ResultSet rs = dbquery.getSt().executeQuery(query);
             while(rs.next()){
                 thuPhi tmp = new thuPhi(rs);
                 thuPhi_list.add(tmp);
             }
+            rs = dbquery.getSt().executeQuery(querysum);
+            if(rs.next() && rs.getString("tong") != null) lbxSum.setText(rs.getString("tong"));
+            else lbxSum.setText("0");
+            rs = dbquery.getSt().executeQuery(queryDaDong);
+            if(rs.next() && rs.getString("tong") != null) lbxDaDong.setText(rs.getString("tong"));
+            else lbxDaDong.setText("0");
+            rs = dbquery.getSt().executeQuery(queryChuaDong);
+            if(rs.next() && rs.getString("tong") != null) lbxChuaDong.setText(rs.getString("tong"));
+            else lbxChuaDong.setText("0");
         } catch (SQLException ex) {
             Logger.getLogger(ThuPhiController.class.getName()).log(Level.SEVERE, null, ex);
         }

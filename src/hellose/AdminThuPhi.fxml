@@ -71,5 +71,23 @@
       <TextField fx:id="tbID" layoutX="80.0" layoutY="331.0" />
       <Button fx:id="btnChinhSuaKhoanThu" layoutX="260.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="127.0" text="Chỉnh sửa khoản thu" />
       <Button fx:id="btnXuat" layoutX="260.0" layoutY="60.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="73.0" text="Xuất file" />
+      <Label fx:id="lbSum" layoutX="260.0" layoutY="460.0" text="Tổng số tiền :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbDaDong" layoutX="260.0" layoutY="490.0" text="Đã đóng :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbChuaDong" layoutX="260.0" layoutY="520.0" text="Chưa đóng :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbxSum" layoutX="360.0" layoutY="460.0" prefWidth="300.0" />
+      <Label fx:id="lbxDaDong" layoutX="360.0" layoutY="490.0" prefWidth="300.0" />
+      <Label fx:id="lbxChuaDong" layoutX="360.0" layoutY="520.0" prefWidth="300.0" />
    </children>
 </AnchorPane>
