@@ -89,7 +89,7 @@ public class AdminThongBaoController extends SceneController implements Initiali
         if(current_user.getQuyenHan().equals("ADMIN")){
             if(event.getSource() == xoathongbao){
                 maTB = txfThongbao.getText();
-                if(maTB != null && maTB.length()>0) delthongbao();           
+                if(check(maTB) == 1 && maTB != null && maTB.length()>0) delthongbao();           
                 else lbWarning.setText("Mã Thông báo không hợp lệ!");
                 maTB = null;
             }
@@ -105,7 +105,7 @@ public class AdminThongBaoController extends SceneController implements Initiali
             if(event.getSource() == suathongbao){
                 try {
                     maTB = txfThongbao.getText();
-                    if(maTB != null && maTB.length()>0) switchScene(event, "SuaThongBao.fxml");
+                    if(check(maTB) == 1 && maTB != null && maTB.length()>0) switchScene(event, "SuaThongBao.fxml");
                     else lbWarning.setText("Mã Thông báo không hợp lệ!");
                     maTB = null;
                 } catch (IOException ex) {
@@ -113,6 +113,17 @@ public class AdminThongBaoController extends SceneController implements Initiali
                 }
             }
         }else lbWarning.setText("Chức năng chỉ dành cho Admin!");
+    }
+
+    public int check(String mathongbao){
+        String query = "SELECT * FROM adminthongbao WHERE mathongbao = " + mathongbao;
+        try {
+            ResultSet rs = dbquery.getSt().executeQuery(query);
+            if (rs.next()) return 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminThongBaoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
 
     public void showThongBao(){
