@@ -150,14 +150,15 @@ public class AdminThuPhiController extends SceneController implements Initializa
                 thuPhi tmp = new thuPhi(rs);
                 list.add(tmp);
             }
-            rs = dbquery.getSt().executeQuery(querysum);
-            if(rs.next() && rs.getString("tong") != null) lbxSum.setText(rs.getString("tong"));
+            ResultSet trs;
+            trs = dbquery.getSt().executeQuery(querysum);
+            if(trs.next() && trs.getString("tong") != null) lbxSum.setText(trs.getString("tong"));
             else lbxSum.setText("0");
-            rs = dbquery.getSt().executeQuery(queryDaDong);
-            if(rs.next() && rs.getString("tong") != null) lbxDaDong.setText(rs.getString("tong"));
+            trs = dbquery.getSt().executeQuery(queryDaDong);
+            if(trs.next() && trs.getString("tong") != null) lbxDaDong.setText(trs.getString("tong"));
             else lbxDaDong.setText("0");
-            rs = dbquery.getSt().executeQuery(queryChuaDong);
-            if(rs.next() && rs.getString("tong") != null) lbxChuaDong.setText(rs.getString("tong"));
+            trs = dbquery.getSt().executeQuery(queryChuaDong);
+            if(trs.next() && trs.getString("tong") != null) lbxChuaDong.setText(trs.getString("tong"));
             else lbxChuaDong.setText("0");
             if(list != null) showList(list);
             else txLog.setText("Không tìm thấy kết quả phù hợp!");
@@ -289,14 +290,15 @@ public class AdminThuPhiController extends SceneController implements Initializa
                 thuPhi tmp = new thuPhi(rs);
                 thuPhi_list.add(tmp);
             }
-            rs = dbquery.getSt().executeQuery(querysum);
-            if(rs.next() && rs.getString("tong") != null) lbxSum.setText(rs.getString("tong"));
+            ResultSet trs;
+            trs = dbquery.getSt().executeQuery(querysum);
+            if(trs.next() && trs.getString("tong") != null) lbxSum.setText(trs.getString("tong"));
             else lbxSum.setText("0");
-            rs = dbquery.getSt().executeQuery(queryDaDong);
-            if(rs.next() && rs.getString("tong") != null) lbxDaDong.setText(rs.getString("tong"));
+            trs = dbquery.getSt().executeQuery(queryDaDong);
+            if(trs.next() && trs.getString("tong") != null) lbxDaDong.setText(trs.getString("tong"));
             else lbxDaDong.setText("0");
-            rs = dbquery.getSt().executeQuery(queryChuaDong);
-            if(rs.next() && rs.getString("tong") != null) lbxChuaDong.setText(rs.getString("tong"));
+            trs = dbquery.getSt().executeQuery(queryChuaDong);
+            if(trs.next() && trs.getString("tong") != null) lbxChuaDong.setText(trs.getString("tong"));
             else lbxChuaDong.setText("0");
         } catch (SQLException ex) {
             Logger.getLogger(ThuPhiController.class.getName()).log(Level.SEVERE, null, ex);

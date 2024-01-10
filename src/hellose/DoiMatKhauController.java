@@ -21,6 +21,7 @@ import javafx.scene.text.Text;
 import prj_class.User;
 import prj_class.dbConnection;
 import prj_class.dbQuery;
+import prj_class.utils;
 
 public class DoiMatKhauController extends SceneController implements Initializable {
 
@@ -109,7 +110,7 @@ public class DoiMatKhauController extends SceneController implements Initializab
                 if(newPass1.compareTo(newPass2) == 0){
                     int x = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn không?", "Xác nhận", 0);
                     if(x == JOptionPane.YES_OPTION){
-                        String query1 = "UPDATE user SET passWD = " + newPass1 + " WHERE userID = " + String.valueOf(change_user.getUserID());
+                        String query1 = "UPDATE user SET passWD = " + utils.quoteWrap(newPass1) + " WHERE userID = " + String.valueOf(change_user.getUserID());
                         String query2 = "SELECT * FROM user WHERE userID = " + String.valueOf(change_user.getUserID());
                         
                         System.out.println(query1);
