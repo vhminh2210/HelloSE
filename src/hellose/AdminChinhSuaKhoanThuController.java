@@ -116,7 +116,7 @@ public class AdminChinhSuaKhoanThuController extends SceneController implements 
             info += "Số tiền mới: " + qSoTienMoi + "\n";
         }
         if(qGhiChuMoi.length() > 0) {
-            query += " ghiChuMoi=" + utils.quoteWrap(qGhiChuMoi) + ",";
+            query += " ghiChu=" + utils.quoteWrap(qGhiChuMoi) + ",";
             info += "Ghi chú mới: " + qGhiChuMoi + "\n";
         }
         
